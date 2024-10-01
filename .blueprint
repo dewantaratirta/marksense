@@ -1,0 +1,3 @@
+created: 'database/factories/AddressFactory.php database/migrations/2024_08_28_122052_create_addresses_table.php app/Models/Address.php'
+models:
+    User: { ulid: 'char:26', name: string, username: 'string nullable', email: 'string nullable', email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable', gender: 'string default:male', phone: 'string nullable', nik: 'string nullable', address_id: 'biginteger unsigned nullable' }

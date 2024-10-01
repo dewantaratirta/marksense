@@ -1,0 +1,22 @@
+// @import url("../assets/vendor/libs/@form-validation/form-validation.scss");
+// @import url("../assets/vendor/fonts/flag-icons.scss");
+@import url("../assets/vendor/fonts/remixicon/remixicon.scss");
+@import url("../assets/vendor/libs/node-waves/node-waves.scss");
+@import url("../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.scss");
+@import url("../assets/vendor/libs/sweetalert2/sweetalert2.scss");
+@import 'animate.css/animate';
+// @import url("../assets/vendor/libs/typeahead-js/typeahead.scss");
+@import url('../assets/vendor/libs/datatables-bs5/datatables.bootstrap5.scss');
+// @import url('../assets/vendor/libs/apex-charts/apex-charts.scss');
+// @import url('../assets/vendor/libs/swiper/swiper.scss');
+
+
+// file pond
+@import 'filepond/dist/filepond.css';
+@import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+.filepond--credits{
+    display: none !important;
+}
+
+// select2
+@import '../assets/vendor/libs/select2/select2.scss'
