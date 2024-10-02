@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import {svelte} from "@sveltejs/vite-plugin-svelte";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 
 const materialize_files = [
@@ -57,17 +56,7 @@ export default defineConfig({
             ],
             refresh: true,
         }),
-        svelte({
-            preprocess: [vitePreprocess({ postcss: true })],
-            alias:{
-                "@/*": "./resources/js/*",
-                '$lib': `/resources/js/lib`,
-                '$lib/*': `/resources/js/lib/*`,
-                'utils': `/resources/js/utils`,
-                'utils/*': `/resources/js/utils/*`,
-                "@img": "/public/img",
-            }
-        }),
+        svelte(),
     ],
     server: {
         watch: {
