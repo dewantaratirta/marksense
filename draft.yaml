@@ -5,7 +5,7 @@ models:
     wallet_username: string
     wallet_view: bigint nullable default:0
     relationships: 
-      hasMany: WalletSettings
+      hasMany: WalletSettings, WalletPnl
       morphToMany: Popularity
 
   WalletPnl:
@@ -42,30 +42,9 @@ models:
     relationships: 
       belongsTo: Wallet
   
-  Posts:
-    posts_ulid: ulid nullable indexed
-    posts_title: string indexed unique
-    posts_content: string
-    relationships: 
-      belongsTo: Wallet
-      hasOne: PostType
-  
-  PostType:
-    post_type_ulid: ulid nullable indexed
-    post_type_name: string indexed unique
-    post_type_description: string
-    post_view: bigint nullable default:0
-    post_pnl_amount: decimal nullable default:0
-    post_pnl_percentage: decimal nullable default:0
-    post_proof_data: string nullable default:null
-    post_proof_url: string nullable default:null
-    relationships: 
-      hasMany: Posts
-      morphToMany: Popularity
-
   Popularity:
     popularity_ulid: ulid nullable indexed
     popularity_view: bigint nullable default:0
     popularity_date: date nullable default:now
     relationships: 
-      morphedByMany: Wallet, PostType
+      morphedByMany: Wallet
