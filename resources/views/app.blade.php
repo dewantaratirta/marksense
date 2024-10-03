@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en_EN" class="dark">
 
 <head>
     <meta charset="utf-8" />
@@ -19,12 +19,8 @@
     @inertiaHead
 </head>
 
-<body>
+<body data-theme="wintry">
     @inertia
 </body>
 
 </html>
-
-<style>
-
-</style>

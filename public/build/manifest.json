@@ -55,12 +55,12 @@
     "isEntry": true
   },
   "resources/assets/vendor/scss/core-dark.scss": {
-    "file": "assets/core-dark-XEuFXcyx.css",
+    "file": "assets/core-dark-Dow9n7Gc.css",
     "src": "resources/assets/vendor/scss/core-dark.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/core.scss": {
-    "file": "assets/core-BfV5vIHo.css",
+    "file": "assets/core-COZe00Gc.css",
     "src": "resources/assets/vendor/scss/core.scss",
     "isEntry": true
   },
@@ -70,102 +70,102 @@
     "isEntry": true
   },
   "resources/assets/vendor/scss/rtl/core-dark.scss": {
-    "file": "assets/core-dark-B_F5D_Ie.css",
+    "file": "assets/core-dark-CWQ8vUfS.css",
     "src": "resources/assets/vendor/scss/rtl/core-dark.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/rtl/core.scss": {
-    "file": "assets/core-BxfwgYJR.css",
+    "file": "assets/core-n3epfucv.css",
     "src": "resources/assets/vendor/scss/rtl/core.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/rtl/theme-bordered-dark.scss": {
-    "file": "assets/theme-bordered-dark-BK_4gpA0.css",
+    "file": "assets/theme-bordered-dark-NqYCl4nV.css",
     "src": "resources/assets/vendor/scss/rtl/theme-bordered-dark.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/rtl/theme-bordered.scss": {
-    "file": "assets/theme-bordered-Ub-eelvI.css",
+    "file": "assets/theme-bordered-BSjHejie.css",
     "src": "resources/assets/vendor/scss/rtl/theme-bordered.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/rtl/theme-default-dark.scss": {
-    "file": "assets/theme-default-dark-Dkop9zfI.css",
+    "file": "assets/theme-default-dark-DhJ4Lv_T.css",
     "src": "resources/assets/vendor/scss/rtl/theme-default-dark.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/rtl/theme-default.scss": {
-    "file": "assets/theme-default-CV3O7wcT.css",
+    "file": "assets/theme-default-B7qk5JaO.css",
     "src": "resources/assets/vendor/scss/rtl/theme-default.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/rtl/theme-raspberry-dark.scss": {
-    "file": "assets/theme-raspberry-dark-CnkyYY39.css",
+    "file": "assets/theme-raspberry-dark-BbhkhEVC.css",
     "src": "resources/assets/vendor/scss/rtl/theme-raspberry-dark.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/rtl/theme-raspberry.scss": {
-    "file": "assets/theme-raspberry-B5PFB_Jz.css",
+    "file": "assets/theme-raspberry-CZdYSbGp.css",
     "src": "resources/assets/vendor/scss/rtl/theme-raspberry.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/rtl/theme-semi-dark-dark.scss": {
-    "file": "assets/theme-semi-dark-dark-0sfJaeUw.css",
+    "file": "assets/theme-semi-dark-dark-DKnRySxG.css",
     "src": "resources/assets/vendor/scss/rtl/theme-semi-dark-dark.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/rtl/theme-semi-dark.scss": {
-    "file": "assets/theme-semi-dark-XYH7bX5s.css",
+    "file": "assets/theme-semi-dark-DOIQxFnX.css",
     "src": "resources/assets/vendor/scss/rtl/theme-semi-dark.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/theme-bordered-dark.scss": {
-    "file": "assets/theme-bordered-dark-CHpaEmn9.css",
+    "file": "assets/theme-bordered-dark-DpsyrelQ.css",
     "src": "resources/assets/vendor/scss/theme-bordered-dark.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/theme-bordered.scss": {
-    "file": "assets/theme-bordered-_wpcet7L.css",
+    "file": "assets/theme-bordered-DxwV_RmG.css",
     "src": "resources/assets/vendor/scss/theme-bordered.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/theme-default-dark.scss": {
-    "file": "assets/theme-default-dark-BhGADqOt.css",
+    "file": "assets/theme-default-dark-CdfuWVHR.css",
     "src": "resources/assets/vendor/scss/theme-default-dark.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/theme-default.scss": {
-    "file": "assets/theme-default-ClwIEfU3.css",
+    "file": "assets/theme-default-C-2uXlqz.css",
     "src": "resources/assets/vendor/scss/theme-default.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/theme-raspberry-dark.scss": {
-    "file": "assets/theme-raspberry-dark-DpJLH0Wi.css",
+    "file": "assets/theme-raspberry-dark-CevG0nk8.css",
     "src": "resources/assets/vendor/scss/theme-raspberry-dark.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/theme-raspberry.scss": {
-    "file": "assets/theme-raspberry-DCrfwfWr.css",
+    "file": "assets/theme-raspberry-UvJXo__V.css",
     "src": "resources/assets/vendor/scss/theme-raspberry.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/theme-semi-dark-dark.scss": {
-    "file": "assets/theme-semi-dark-dark-CBLOo_zP.css",
+    "file": "assets/theme-semi-dark-dark-Z20C0jxw.css",
     "src": "resources/assets/vendor/scss/theme-semi-dark-dark.scss",
     "isEntry": true
   },
   "resources/assets/vendor/scss/theme-semi-dark.scss": {
-    "file": "assets/theme-semi-dark-DveR9Wsk.css",
+    "file": "assets/theme-semi-dark-Bipw4Lga.css",
     "src": "resources/assets/vendor/scss/theme-semi-dark.scss",
     "isEntry": true
   },
   "resources/css/frontpage.pcss": {
-    "file": "assets/frontpage-ATGjOkRn.css",
+    "file": "assets/frontpage-ad1BAu3X.css",
     "src": "resources/css/frontpage.pcss",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-HqD16QD4.js",
+    "file": "assets/app-CwcWc91M.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -174,11 +174,11 @@
       "_axios-CCb-kr4I.js"
     ],
     "css": [
-      "assets/app-C6tl466J.css"
+      "assets/app-CqkCzvSd.css"
     ]
   },
   "resources/js/frontpage.js": {
-    "file": "assets/frontpage-DRq_Cp4f.js",
+    "file": "assets/frontpage-C3_BcTyD.js",
     "name": "frontpage",
     "src": "resources/js/frontpage.js",
     "isEntry": true,
@@ -188,12 +188,12 @@
     ]
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-q0rti8Tc.css",
+    "file": "assets/app-Bq8qKIx8.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/font-awesome/css/all.min.css": {
-    "file": "assets/all-YggSELZk.css",
+    "file": "assets/all-Bk-ErUbp.css",
     "src": "resources/sass/font-awesome/css/all.min.css",
     "isEntry": true
   },
