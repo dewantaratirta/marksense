@@ -1,7 +1,7 @@
 <script>
-    import Wallet from "@/lib/components/wallet/wallet.svelte";
+    import Wallet from "@/lib/components/wallet/Wallet.svelte";
 </script>
 
 <div class="relative lg:block">
-    <Wallet />
+    <w3m-button> </w3m-button>
 </div>

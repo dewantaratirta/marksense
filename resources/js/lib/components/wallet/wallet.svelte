@@ -1,80 +1,91 @@
+<!-- THIS FILE CAN BE REMOVED, IT SERVES ONLY TO DEMO BEST PRACTICES -->
 <script>
-    import {
-        connected,
-        disconnectWagmi,
-        signerAddress,
-        wagmiConfig,
-        configuredConnectors,
-        loading,
-        chainId,
-        web3Modal,
-        defaultConfig,
-        wagmiLoaded,
-        WC,
-    } from "stores/wagmi";
-    import { onMount } from "svelte";
-    import { walletConnect, injected, coinbaseWallet } from "@wagmi/connectors";
-    import { connect, writeContract } from "@wagmi/core";
-    import { base } from "@wagmi/chains";
-    import { base_sepolia } from "$lib/base_sepolia_chain";
-    import { niceAddress } from "$lib/utils";
+    import { account, provider, supported_chains } from "$lib/web3modal";
 
-    // import { PUBLIC_WALLETCONNECT_ID } from '$env/static/public';
-    const PUBLIC_WALLETCONNECT_ID = "3e97282400323fb72cc0545de271fff9";
+    let metadata;
+    let chains = [];
+    let methods = [];
+    let events = [];
 
-    onMount(async () => {
-        const coinbase = defaultConfig({
-            chains: [base],
-            appName: "Marksense",
-            connectors: [
-                coinbaseWallet({
-                    appName: "Marksense",
-                    preference: "smartWalletOnly",
-                    appLogoUrl: "https://marksense.io/logo.png",
-                    version: "4",
-                }),
-                walletConnect({
-                    projectId: PUBLIC_WALLETCONNECT_ID,
-                }),
-            ],
-            alchemyId: "tAfcDp9L5Y6JhEfXQ5oxpcPeOhwY__L7",
-            walletConnectProjectId: PUBLIC_WALLETCONNECT_ID,
-        });
+    provider.subscribe((value) => {
+        const session = value?.session;
+        if (session) {
+            const namespaces = session.namespaces?.eip155;
+            metadata = session.peer?.metadata;
+            chains = namespaces?.chains;
+            methods = namespaces?.methods;
+            events = namespaces?.events;
 
-        await coinbase.init();
-        console.log(disconnectWagmi)
+            if (chains.length) supported_chains.set(chains);
+        }
     });
 </script>
 
-{#if wagmiLoaded}
-    {#if $loading}
-        <div>
-            <span class="loader" />Waiting...
-        </div>
-    {:else if $connected}
-        <button
-            on:click={async () => {
-                // await disconnectWagmi();
-                await WC();
-            }}
-            class="btn hover:bg-primary-600 bg-primary-800"
-        >
-            {niceAddress($signerAddress)}
-        </button>
-    {:else}
-        <button
-            on:click={async () => {
-                $loading = true;
-                await $web3Modal.open();
-                $loading = false;
-            }}
-            class="btn hover:bg-primary-600 bg-primary-800"
-        >
-            {#if $loading}
-                <span class="loader" />Connecting...
-            {:else}
-                Connect
+{#if $account.isConnected}
+    <div class="card">
+        <p>
+            {#if metadata.name}
+                <span id="title">Wallet:</span> {metadata.name}
             {/if}
-        </button>
+        </p>
+        {#if metadata.description}
+            <span>
+                <span id="title">description:</span>
+                {metadata.description}
+            </span>
+        {/if}
+        {#if metadata.icons?.[0]}
+            <span>
+                <span id="title">icon:</span>
+                <img
+                    class="wallet-icon"
+                    src={metadata.icons[0]}
+                    alt="wallet icon"
+                />
+            </span>
+        {/if}
+        {#if metadata.url}
+            <span>
+                <span id="title">Domain:</span>
+                <a href={metadata.url} target="_blank" rel="noreferrer nofollow"
+                    >{metadata.url}</a
+                >
+            </span>
+        {/if}
+    </div>
+    {#if chains}
+        <div class="card">
+            <span id="title">Approved Chains:</span>
+            {#each chains as chain}
+                <div>{chain}</div>
+            {/each}
+        </div>
+    {/if}
+    {#if events}
+        <div class="card">
+            <span id="title">Approved Events:</span>
+            {#each events as event}
+                <div>{event}</div>
+            {/each}
+        </div>
+    {/if}
+    {#if methods}
+        <div class="card">
+            <span id="title">Approved Methods:</span>
+            {#each methods as method}
+                <div>{method}</div>
+            {/each}
+        </div>
     {/if}
 {/if}
+
+<style>
+    #title {
+        font-weight: 500;
+    }
+
+    .wallet-icon {
+        width: 40px;
+        height: auto;
+    }
+</style>
