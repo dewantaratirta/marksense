@@ -42,6 +42,7 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@coinbase/wallet-sdk": "^4.1.0",
         "@form-validation/bundle": "2.4.0",
         "@form-validation/core": "2.4.0",
         "@form-validation/plugin-alias": "2.4.0",
@@ -59,10 +60,13 @@
         "@fullcalendar/timeline": "6.1.14",
         "@inertiajs/svelte": "^1.2.0",
         "@popperjs/core": "2.11.8",
+        "@reclaimprotocol/zk-fetch": "^0.1.5",
         "@simonwep/pickr": "1.9.1",
         "@skeletonlabs/skeleton": "^2.10.2",
         "@skeletonlabs/tw-plugin": "^0.4.0",
         "@sveltejs/vite-plugin-svelte": "^3.1.2",
+        "@wagmi/connectors": "^5.1.14",
+        "@wagmi/core": "^2.13.8",
         "@yaireo/tagify": "4.18.3",
         "animate.css": "4.1.1",
         "aos": "2.3.4",
@@ -129,6 +133,7 @@
         "tailwind-variants": "^0.2.1",
         "timepicker": "1.14.1",
         "toastr": "2.1.4",
-        "typeahead.js": "0.11.1"
+        "typeahead.js": "0.11.1",
+        "viem": "^2.21.17"
     }
 }

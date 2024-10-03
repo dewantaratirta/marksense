@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AppController::class, 'index'])->name('index');
+Route::get('/app', [AppController::class, 'app'])->name('app');
 
 Auth::routes([
     'register' => false,

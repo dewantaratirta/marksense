@@ -24,6 +24,9 @@
      */
     "checkJs": true,
     "paths": {
+      "@/*": [
+        "./resources/js/*"
+      ],
       "$lib": [
         "./resources/js/lib",
       ],
@@ -32,6 +35,12 @@
       ],
       "utils": [
         "./resources/js/lib/utils"
+      ],
+      "stores": [
+        "./resources/js/store"
+      ],
+      "stores/*": [
+        "./resources/js/stores/*"
       ],
     }
   },
@@ -42,6 +51,8 @@
   "include": [
     "resources/**/*.d.ts",
     "resources/**/*.js",
-    "resources/**/*.svelte"
+    "resources/**/*.svelte",
+    "resources/js/stores/wagmi.tss",
+    "resources/js/stores/wagmi.tsts"
   ]
 }

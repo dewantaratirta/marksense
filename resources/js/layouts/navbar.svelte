@@ -1,16 +1,18 @@
 <script>
     import MainIcon from "./navbar/mainIcon.svelte";
     import MainMenu from "./navbar/mainMenu.svelte";
+    import AppMenu from "./navbar/appMenu.svelte";
 
-    export let status = "main";
+    export let state = "main";
     export let Icon;
     export let Menu;
 
-    switch (status) {
-        case "main":
+    switch (state) {
+        case "app":
             Icon = MainIcon;
-            Menu = MainMenu;
+            Menu = AppMenu;
             break;
+        case "main":
         default:
             Icon = MainIcon;
             Menu = MainMenu;

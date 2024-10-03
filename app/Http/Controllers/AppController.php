@@ -9,8 +9,16 @@ class AppController extends Controller
 {
     public function index()
     {
-        return Inertia::render('IndexPage', [
-            'token' => csrf_token(),
-        ]);
+        return Inertia::render(
+            'IndexPage',
+            // [
+            //     'token' => csrf_token(),
+            // ]
+        );
+    }
+
+    public function app()
+    {
+        return Inertia::render('AppPage');
     }
 }
