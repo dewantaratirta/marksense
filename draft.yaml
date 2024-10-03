@@ -1,0 +1,50 @@
+models:
+  Wallet:
+    wallet_ulid: ulid nullable indexed
+    wallet_address: string indexed unique
+    wallet_username: string
+    wallet_view: bigint nullable default:0
+    relationships: 
+      hasMany: WalletSettings, WalletPnl
+      morphToMany: Popularity
+
+  WalletPnl:
+    wallet_pnl_ulid: ulid nullable indexed
+    wallet_pnl_amount: decimal nullable default:0
+    wallet_pnl_percentage: decimal nullable default:0
+    wallet_pnl_date: date nullable default:now
+    relationships: 
+      belongsTo: Wallet
+
+  Socials:
+    socials_ulid: ulid nullable indexed
+    socials_name: string indexed unique
+    socials_identity: string indexed unique
+    socials_username: string
+    socials_proof_data: string nullable default:null
+    socials_proof_url: string nullable default:null
+    socials_link: string nullable default:null
+    relationships: 
+      belongsTo: SocialType
+
+  SocialType:
+    social_type_ulid: ulid nullable indexed
+    social_type_id: ulid nullable indexed
+    social_type_name: string indexed unique
+    social_type_description: string
+    relationships: 
+      hasMany: Socials
+
+  WalletSettings:
+    wallet_settings_ulid: ulid nullable indexed
+    wallet_settings_name: string indexed unique
+    wallet_settings_value: string
+    relationships: 
+      belongsTo: Wallet
+  
+  Popularity:
+    popularity_ulid: ulid nullable indexed
+    popularity_view: bigint nullable default:0
+    popularity_date: date nullable default:now
+    relationships: 
+      morphedByMany: Wallet

@@ -3,7 +3,7 @@
 return [
   "creatorName" => "",
   "creatorUrl" => "",
-  "templateName" => "Klinikita",
+  "templateName" => "Marksense",
   "templateSuffix" => "Dashboard",
   "templateVersion" => "2.0.1",
   "templateFree" => false,
