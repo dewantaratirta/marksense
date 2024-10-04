@@ -36,7 +36,7 @@ class AppController extends Controller
     public function profile($wallet)
     {
         $wallet = Wallet::where('wallet_address', $wallet)->first();
-        if(!$wallet) return redirect()->route('app.index');
+        if(!$wallet) return redirect()->route('app.create_account');
 
         return Inertia::render('ProfilePage', [
             'wallet' => $wallet
