@@ -11,5 +11,8 @@
 
 <div style="display: contents" class="h-full overflow-hidden">
     <Navbar {state} />
-    <slot />
+
+    <div id="page-content" class="flex-auto">
+        <slot />
+    </div>
 </div>

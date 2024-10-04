@@ -1,5 +1,5 @@
 import { createWeb3Modal } from '@web3modal/wagmi';
-import { createConfig } from '@wagmi/core';
+import { createConfig, http } from '@wagmi/core';
 import { walletConnect, injected, coinbaseWallet } from "@wagmi/connectors";
 
 import { getAccount, getChainId, reconnect, watchAccount, watchChainId } from '@wagmi/core';
@@ -50,6 +50,10 @@ export const wagmiConfig = createConfig({
 			projectId: projectId,
 		}),
 	],
+	transports:{
+		[base_sepolia.id]: http('https://sepolia.base.org'),
+		[base.id]: http('https://base.llamarpc.com')
+	}
 });
 
 reconnect(wagmiConfig);
@@ -64,7 +68,7 @@ createWeb3Modal({
 		'--w3m-color-mix': '#1e3a8a', // Modal colour mix primary-300
 		'--w3m-color-mix-strength': 50, // Strength of colour
 		'--w3m-font-size-master': '8px', // Font size
-		'--w3m-border-radius-master': '999px' // border rounding
+		'--w3m-border-radius-master': '999px', // border rounding
 		// --w3m-z-index
 	},
 	featuredWalletIds: [],

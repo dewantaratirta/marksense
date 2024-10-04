@@ -7,3 +7,26 @@ html, body { @apply h-full overflow-hidden; }
 html.dark body{
   
 }
+
+
+.bg-gradient-1{
+    background-image: radial-gradient(
+            at 0% 0%,
+            rgba(var(--color-secondary-500) / 0.33) 0px,
+            transparent 50%
+        ),
+        radial-gradient(
+            at 98% 1%,
+            rgba(var(--color-error-500) / 0.33) 0px,
+            transparent 50%
+        );
+}
+.bg-gradient-2{
+    background-image: radial-gradient(at 0% 100%,rgba(var(--color-secondary-500) / .5) 0px,transparent 50%)
+}
+.bg-gradient-3{
+    background-image: radial-gradient(at 0% 0%,rgba(var(--color-secondary-500) / .5) 0px,transparent 50%),radial-gradient(at 100% 100%,rgba(var(--color-primary-500) / .24) 0px,transparent 50%)
+}
+.bg-gradient-4{
+    background-image: radial-gradient(at 0% 0%,rgba(var(--color-secondary-500) / .33) 0px,transparent 50%),radial-gradient(at 100% 0%,rgba(var(--color-primary-500) / .33) 0px,transparent 50%)
+}

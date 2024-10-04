@@ -1,6 +1,10 @@
-import { defineChain } from 'viem'
+import { defineChain } from 'viem';
+import {
+	base,
+} from 'viem/chains';
 
 export const base_sepolia = defineChain({
+  ...base,
   id: 84532,
   name: 'Base Sepolia',
   nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },

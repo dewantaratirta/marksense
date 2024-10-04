@@ -22,7 +22,7 @@
 
 <header id="shell-header" class="flex-none z-10">
     <div
-        class="app-bar flex flex-col bg-surface-100-800-token space-y-4 p-4 shadow-2xl"
+        class="app-bar flex flex-col dark bg-surface-100-800-token space-y-4 p-4 shadow-2xl"
         data-testid="app-bar"
         role="toolbar"
         aria-label=""
