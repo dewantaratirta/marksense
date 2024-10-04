@@ -5,7 +5,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AppController::class, 'index'])->name('index');
-Route::get('/app', [AppController::class, 'app'])->name('app');
+
+Route::group(['prefix' => 'app', 'as' => 'app.'], function () {
+    Route::get('/', [AppController::class, 'app'])->name('index');
+    Route::get('/create_account', [AppController::class, 'create_account'])->name('create_account');
+    Route::get('/profile/{wallet}', [AppController::class, 'profile'])->name('profile');
+});
 
 Auth::routes([
     'register' => false,

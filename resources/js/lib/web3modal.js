@@ -33,6 +33,8 @@ export const chains = [
 	base
 ];
 
+export const web3modal = writable(undefined, ()=>{});
+
 export const wagmiConfig = createConfig({
 	chains,
 	projectId,
@@ -58,7 +60,7 @@ export const wagmiConfig = createConfig({
 
 reconnect(wagmiConfig);
 
-createWeb3Modal({
+let modal = createWeb3Modal({
 	wagmiConfig,
 	projectId,
 	themeMode: 'dark', // light/dark mode
@@ -75,6 +77,7 @@ createWeb3Modal({
 	enableAnalytics: false,
 	customWallets
 });
+web3modal.set(modal);
 
 export const chainId = readable(getChainId(wagmiConfig), (set) =>
 	watchChainId(wagmiConfig, { onChange: set })

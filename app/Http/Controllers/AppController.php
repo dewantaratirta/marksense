@@ -21,4 +21,14 @@ class AppController extends Controller
     {
         return Inertia::render('AppPage');
     }
+
+    public function create_account()
+    {
+        return Inertia::render('CreateAccountPage');
+    }
+
+    public function profile()
+    {
+        return Inertia::render('ProfilePage');
+    }
 }

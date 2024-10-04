@@ -7,7 +7,6 @@
     let address = "";
 
     account.subscribe((value) => {
-        console.log(value);
         address = value?.address;
     });
 </script>
