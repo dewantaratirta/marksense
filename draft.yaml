@@ -3,7 +3,7 @@ models:
     wallet_address: string indexed unique
     wallet_name: string
     wallet_username: string
-    wallet_view: bigint nullable default:0
+    wallet_view: bigintegerunsigned default:0
     relationships:
       hasMany: WalletSettings, WalletPnl, TradePnl
       morphToMany: Popularity
@@ -12,17 +12,25 @@ models:
     wallet_pnl_ulid: ulid nullable indexed
     wallet_pnl_amount: decimal nullable default:0
     wallet_pnl_percentage: decimal nullable default:0
-    wallet_pnl_date: date nullable default:now
+    wallet_pnl_date: date nullable default:null
+    wallet_pnl_view: bigintegerunsigned default:0
+    wallet_proof_id: string nullable
+    wallet_proof_data: string nullable
     relationships:
-      belongsTo: Wallet, Exchanges
+      belongsTo: Wallet
+      hasOne: Exchanges
       morphToMany: Popularity
 
   TradePnl:
     trade_pnl_ulid: ulid nullable indexed
     trade_pnl_amount: decimal nullable default:0
     trade_pnl_percentage: decimal nullable default:0
-    trade_pnl_date: date nullable default:now
+    trade_pnl_date: date nullable default:null
+    trade_pnl_view: bigintegerunsigned default:0
+    trade_proof_id: string nullable
+    trade_proof_data: string nullable
     relationships:
+      hasOne: Exchanges
       belongsTo: Wallet
       morphToMany: Popularity
 
@@ -35,8 +43,8 @@ models:
 
   Popularity:
     popularity_ulid: ulid nullable indexed
-    popularity_view: bigint nullable default:0
-    popularity_date: date nullable default:now
+    popularity_view: bigintegerunsigned default:0
+    popularity_date: date nullable default:null
     relationships:
       morphedByMany: Wallet, WalletPnl, TradePnl
 

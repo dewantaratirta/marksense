@@ -65,6 +65,7 @@
         "@skeletonlabs/skeleton": "^2.10.2",
         "@skeletonlabs/tw-plugin": "^0.4.0",
         "@sveltejs/vite-plugin-svelte": "^3.1.2",
+        "@tailwindcss/forms": "^0.5.9",
         "@wagmi/chains": "^1.8.0",
         "@wagmi/connectors": "^5.1.14",
         "@wagmi/core": "^2.13.8",

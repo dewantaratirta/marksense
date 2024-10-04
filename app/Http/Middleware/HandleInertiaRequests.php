@@ -36,7 +36,6 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            'PUBLIC_WALLETCONNECT_ID' => env('PUBLIC_WALLETCONNECT_ID'),
         ]);
     }
 }

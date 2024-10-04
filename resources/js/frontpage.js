@@ -9,6 +9,6 @@ createInertiaApp({
         new App({ target: el, props });
     },
     progress: {
-        color: "#e0c088",
+        color: "#0b4cf7",
     },
 });

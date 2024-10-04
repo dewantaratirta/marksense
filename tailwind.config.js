@@ -1,4 +1,4 @@
-import { fontFamily } from "tailwindcss/defaultTheme";
+import forms from '@tailwindcss/forms';
 // @ts-check
 import { join } from 'path';
 
@@ -25,7 +25,8 @@ const config = {
 		// 4. Append the Skeleton plugin (after other plugins)
 		skeleton({
 			themes: { preset: [ "wintry" ] }
-		})
+		}),
+		forms
 	]
 };
 

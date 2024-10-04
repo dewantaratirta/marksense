@@ -1,3 +1,28 @@
-created: 'database/factories/AddressFactory.php database/migrations/2024_08_28_122052_create_addresses_table.php app/Models/Address.php'
+created:
+    - database/factories/WalletFactory.php
+    - database/factories/WalletPnlFactory.php
+    - database/factories/TradePnlFactory.php
+    - database/factories/WalletSettingsFactory.php
+    - database/factories/PopularityFactory.php
+    - database/factories/ExchangesFactory.php
+    - database/migrations/2024_10_04_083840_create_wallets_table.php
+    - database/migrations/2024_10_04_083841_create_wallet_pnls_table.php
+    - database/migrations/2024_10_04_083842_create_trade_pnls_table.php
+    - database/migrations/2024_10_04_083843_create_wallet_settings_table.php
+    - database/migrations/2024_10_04_083844_create_popularities_table.php
+    - database/migrations/2024_10_04_083845_create_exchanges_table.php
+    - database/migrations/2024_10_04_083846_create_popularityables_table.php
+    - app/Models/Wallet.php
+    - app/Models/WalletPnl.php
+    - app/Models/TradePnl.php
+    - app/Models/WalletSettings.php
+    - app/Models/Popularity.php
+    - app/Models/Exchanges.php
 models:
     User: { ulid: 'char:26', name: string, username: 'string nullable', email: 'string nullable', email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable', gender: 'string default:male', phone: 'string nullable', nik: 'string nullable', address_id: 'biginteger unsigned nullable' }
+    Wallet: { wallet_address: 'string indexed unique', wallet_name: string, wallet_username: string, wallet_view: 'bigintegerunsigned default:0', relationships: { hasMany: 'WalletSettings, WalletPnl, TradePnl', morphToMany: Popularity } }
+    WalletPnl: { wallet_pnl_ulid: 'ulid nullable indexed', wallet_pnl_amount: 'decimal nullable default:0', wallet_pnl_percentage: 'decimal nullable default:0', wallet_pnl_date: 'date nullable default:null', wallet_pnl_view: 'bigintegerunsigned default:0', wallet_proof_id: 'string nullable', wallet_proof_data: 'string nullable', relationships: { belongsTo: Wallet, hasOne: Exchanges, morphToMany: Popularity } }
+    TradePnl: { trade_pnl_ulid: 'ulid nullable indexed', trade_pnl_amount: 'decimal nullable default:0', trade_pnl_percentage: 'decimal nullable default:0', trade_pnl_date: 'date nullable default:null', trade_pnl_view: 'bigintegerunsigned default:0', trade_proof_id: 'string nullable', trade_proof_data: 'string nullable', relationships: { hasOne: Exchanges, belongsTo: Wallet, morphToMany: Popularity } }
+    WalletSettings: { wallet_settings_ulid: 'ulid nullable indexed', wallet_settings_name: 'string indexed unique', wallet_settings_value: string, relationships: { belongsTo: Wallet } }
+    Popularity: { popularity_ulid: 'ulid nullable indexed', popularity_view: 'bigintegerunsigned default:0', popularity_date: 'date nullable default:null', relationships: { morphedByMany: 'Wallet, WalletPnl, TradePnl' } }
+    Exchanges: { exchange_ulid: 'ulid nullable indexed', exchange_name: 'string indexed unique', relationships: { hasMany: 'TradePnl, WalletPnl' } }

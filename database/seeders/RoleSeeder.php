@@ -11,12 +11,6 @@ class RoleSeeder extends Seeder
     public $role_lists = [
         'superadmin',
         'administrator',
-        'dokter',
-        'pasien',
-        'pasien',
-        'perawat',
-        // 'apoteker',
-        // 'kasir',
     ];
 
     /**
@@ -34,12 +28,12 @@ class RoleSeeder extends Seeder
             if (!$this->checkRoleExists($role)) {
                 $created = true;
                 Role::create(['name' => $role]);
-                echo 'Role ' . $role . ' created.' . PHP_EOL;
+                $this->command->info('Role ' . $role . ' created.');
             }
         }
-
+        
         if (!$created) {
-            echo 'All roles exists.' . PHP_EOL;
+            $this->command->info('No new role created.');
         }
     }
 

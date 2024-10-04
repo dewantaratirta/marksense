@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -24,11 +25,21 @@ class AppController extends Controller
 
     public function create_account()
     {
-        return Inertia::render('CreateAccountPage');
+        return Inertia::render('CreateAccountPage',
+            [
+                'token' => csrf_token(),
+                'api_url' => route('api.account.create'),
+            ]
+        );
     }
 
-    public function profile()
+    public function profile($wallet)
     {
-        return Inertia::render('ProfilePage');
+        $wallet = Wallet::where('wallet_address', $wallet)->first();
+        if(!$wallet) return redirect()->route('app.index');
+
+        return Inertia::render('ProfilePage', [
+            'wallet' => $wallet
+        ]);
     }
 }
