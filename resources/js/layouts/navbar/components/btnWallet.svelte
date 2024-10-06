@@ -1,32 +1,43 @@
 <script>
     import { connect } from "@wagmi/core";
-    import { web3modal, wagmiConfig, account, reconnect } from "@/lib/web3modal";
+    import {
+        web3modal,
+        wagmiConfig,
+        account,
+        reconnect,
+    } from "@/lib/web3modal";
     import modalContentWallet from "./modalContentWallet.svelte";
     import { getModalStore } from "@skeletonlabs/skeleton";
 
     let connector;
 
     const modalStore = getModalStore();
-
+    let count = 0;
 
     $: {
         if ($web3modal) {
             connector = wagmiConfig.connectors[0];
         }
 
-        if(!$account?.address){
-            reconnect();
+        if (!$account?.address) {
+            if (count < 3) {
+                reconnect();
+                count++;
+            }
         }
     }
 
     const handleConnect = () => {
-        connect(wagmiConfig, {
-            connector: connector,
-        });
+        try{
+            connect(wagmiConfig, {
+                connector: connector,
+            });
+        } catch(e){
+            console.log(e);
+        }
     };
 
     const handleModalOpen = () => {
-        //todo https://github.com/skeletonlabs/skeleton/tree/master/sites/skeleton.dev/src/lib/modals/examples
         const modalSetting = {
             type: "component",
             component: { ref: modalContentWallet },

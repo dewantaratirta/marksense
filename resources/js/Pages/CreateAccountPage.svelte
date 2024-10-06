@@ -1,12 +1,10 @@
 <script>
     import Layouts from "@/layouts/layouts.svelte";
-    import { account, web3modal, wagmiConfig } from "$lib/web3modal";
+    import { connect } from "@wagmi/core";
+    import { account, web3modal, wagmiConfig, reconnect } from "$lib/web3modal";
     import Section from "@/lib/components/Section.svelte";
     import { signMessage, verifyMessage } from "@wagmi/core";
-    import {
-        getToastStore,
-        initializeStores,
-    } from "@skeletonlabs/skeleton";
+    import { getToastStore, initializeStores } from "@skeletonlabs/skeleton";
     import TextError from "@/lib/components/TextError.svelte";
 
     import { page } from "@inertiajs/svelte";
@@ -15,11 +13,24 @@
     let username = "";
     let display_name = "";
     let _token = $page.props.token;
+    let connector;
+    let account_data;
 
     let errors = {};
 
     initializeStores();
     const toastStore = getToastStore();
+
+    const connectWallet = async () => {
+        try {
+            connector = wagmiConfig.connectors[0];
+            connect(wagmiConfig, {
+                connector: connector,
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
     /**
      * On click
@@ -43,6 +54,9 @@
         let message = JSON.stringify(payload);
 
         try {
+            if (!$account.address) {
+                await connectWallet();
+            }
             const _signature = await signMessage(wagmiConfig, {
                 message: message,
             });
@@ -100,17 +114,13 @@
         }
     };
 
+    let once = 0;
     account.subscribe(async (value) => {
-        if (!value?.isConnecting) {
-            if (!value?.address) {
-                $web3modal?.open();
-            }
+        if (!account_data && !account_data?.address && $web3modal && once < 1) {
+            await connectWallet();
+            once++;
         }
     });
-
-    $: {
-        errors;
-    }
 </script>
 
 <Layouts>
@@ -119,7 +129,7 @@
             <div
                 class="max-w-xl mx-auto card py-8 px-4 shadow sm:rounded-lg sm:px-10"
             >
-                <h1 class="text-xl font-bold mb-4">Register</h1>
+                <h1 class="text-xl font-bold mb-4">Sign Up</h1>
                 <hr class="mb-8" />
 
                 <form
@@ -248,6 +258,5 @@
                 </form>
             </div>
         </div>
-
     </Section>
 </Layouts>

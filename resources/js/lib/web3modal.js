@@ -45,7 +45,7 @@ export const wagmiConfig = createConfig({
 		coinbaseWallet({
 			appName: "Marksense",
 			preference: "smartWalletOnly",
-			appLogoUrl: "https://marksense.tech/public/logo.png",
+			appLogoUrl: "https://marksense.tech/storage/icon.svg",
 			version: "4",
 		}),
 		// walletConnect({
