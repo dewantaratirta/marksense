@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('wallet_pnls', function (Blueprint $table) {
             $table->id();
-            $table->ulid('wallet_pnl_ulid')->nullable();
+            $table->ulid('ulid')->nullable();
             $table->decimal('wallet_pnl_amount')->nullable()->default(0);
             $table->decimal('wallet_pnl_percentage')->nullable()->default(0);
             $table->date('wallet_pnl_date')->nullable()->default(null);

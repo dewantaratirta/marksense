@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('exchanges', function (Blueprint $table) {
             $table->id();
-            $table->ulid('exchange_ulid')->nullable();
+            $table->ulid('ulid')->nullable();
             $table->string('exchange_name')->unique();
             $table->timestamps();
         });

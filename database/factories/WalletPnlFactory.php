@@ -22,7 +22,7 @@ class WalletPnlFactory extends Factory
     public function definition(): array
     {
         return [
-            'wallet_pnl_ulid' => (string) Str::ulid(),
+            'ulid' => (string) Str::ulid(),
             'wallet_pnl_amount' => $this->faker->randomFloat(0, 0, 9999999999.),
             'wallet_pnl_percentage' => $this->faker->randomFloat(0, 0, 9999999999.),
             'wallet_pnl_date' => $this->faker->date(),

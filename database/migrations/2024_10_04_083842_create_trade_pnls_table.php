@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('trade_pnls', function (Blueprint $table) {
             $table->id();
-            $table->ulid('trade_pnl_ulid')->nullable();
+            $table->ulid('ulid')->nullable();
             $table->decimal('trade_pnl_amount')->nullable()->default(0);
             $table->decimal('trade_pnl_percentage')->nullable()->default(0);
             $table->date('trade_pnl_date')->nullable()->default(null);

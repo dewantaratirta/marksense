@@ -16,7 +16,7 @@ class WalletSettings extends Model
      * @var array
      */
     protected $fillable = [
-        'wallet_settings_ulid',
+        'ulid',
         'wallet_settings_name',
         'wallet_settings_value',
         'wallet_id',

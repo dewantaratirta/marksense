@@ -22,7 +22,7 @@ class TradePnlFactory extends Factory
     public function definition(): array
     {
         return [
-            'trade_pnl_ulid' => (string) Str::ulid(),
+            'ulid' => (string) Str::ulid(),
             'trade_pnl_amount' => $this->faker->randomFloat(0, 0, 9999999999.),
             'trade_pnl_percentage' => $this->faker->randomFloat(0, 0, 9999999999.),
             'trade_pnl_date' => $this->faker->date(),

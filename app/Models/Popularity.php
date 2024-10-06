@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Trait\HasCustomUlid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Popularity extends Model
 {
-    use HasFactory;
+    use HasFactory, HasCustomUlid;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +17,7 @@ class Popularity extends Model
      * @var array
      */
     protected $fillable = [
-        'popularity_ulid',
+        'ulid',
         'popularity_view',
         'popularity_date',
     ];
@@ -30,6 +31,10 @@ class Popularity extends Model
         'id' => 'integer',
         'popularity_date' => 'date',
     ];
+
+    /**
+     * RELATIONSHIP
+     */
 
     public function wallets(): MorphToMany
     {

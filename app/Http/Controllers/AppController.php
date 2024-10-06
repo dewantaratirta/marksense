@@ -20,15 +20,21 @@ class AppController extends Controller
 
     public function app()
     {
-        return Inertia::render('AppPage');
+        return Inertia::render('AppPage',[
+            'title' => 'Explore - ' . config('variables.templateName'),
+            'description' => 'Explore - ' . config('variables.templateName'),
+        ]);
     }
 
     public function create_account()
     {
-        return Inertia::render('CreateAccountPage',
+        return Inertia::render(
+            'CreateAccountPage',
             [
                 'token' => csrf_token(),
                 'api_url' => route('api.account.create'),
+                'title' => 'Sign Up - ' . config('variables.templateName'),
+                'description' => 'Sign Up - ' . config('variables.templateName'),
             ]
         );
     }
@@ -36,10 +42,14 @@ class AppController extends Controller
     public function profile($wallet)
     {
         $wallet = Wallet::where('wallet_address', $wallet)->first();
-        if(!$wallet) return redirect()->route('app.create_account');
+        if (!$wallet) return redirect()->route('app.create_account');
 
+        $wallet->addView();
+        $wallet->addPopularities();
         return Inertia::render('ProfilePage', [
-            'wallet' => $wallet
+            'wallet' => $wallet,
+            'title' => $wallet->wallet_name . ' - ' . config('variables.templateName'),
+            'description' => $wallet->wallet_name . ' - ' . config('variables.templateName'),
         ]);
     }
 }

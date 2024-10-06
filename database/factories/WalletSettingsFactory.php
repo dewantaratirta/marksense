@@ -22,7 +22,7 @@ class WalletSettingsFactory extends Factory
     public function definition(): array
     {
         return [
-            'wallet_settings_ulid' => (string) Str::ulid(),
+            'ulid' => (string) Str::ulid(),
             'wallet_settings_name' => $this->faker->word(),
             'wallet_settings_value' => $this->faker->word(),
             'wallet_id' => Wallet::factory(),

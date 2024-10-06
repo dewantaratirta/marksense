@@ -16,7 +16,7 @@ class Exchanges extends Model
      * @var array
      */
     protected $fillable = [
-        'exchange_ulid',
+        'ulid',
         'exchange_name',
     ];
 

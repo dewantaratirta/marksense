@@ -15,6 +15,7 @@
         initializeStores as ToastInitializeStores,
     } from "@skeletonlabs/skeleton";
     import { mainState } from "stores/mainStateStore";
+    import Seo from "@/lib/components/Seo.svelte";
 
 
     let state = "main";
@@ -47,4 +48,5 @@
             <svelte:component this={MenuDrawer} />
         {/if}
     </Drawer>
+    <Seo />
 </div>

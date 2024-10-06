@@ -21,7 +21,7 @@ class PopularityFactory extends Factory
     public function definition(): array
     {
         return [
-            'popularity_ulid' => (string) Str::ulid(),
+            'ulid' => (string) Str::ulid(),
             'popularity_date' => $this->faker->date(),
         ];
     }

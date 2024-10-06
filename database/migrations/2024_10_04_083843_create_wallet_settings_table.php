@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('wallet_settings', function (Blueprint $table) {
             $table->id();
-            $table->ulid('wallet_settings_ulid')->nullable();
+            $table->ulid('ulid')->nullable();
             $table->string('wallet_settings_name')->unique();
             $table->string('wallet_settings_value');
             $table->foreignId('wallet_id');

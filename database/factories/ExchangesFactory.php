@@ -21,7 +21,7 @@ class ExchangesFactory extends Factory
     public function definition(): array
     {
         return [
-            'exchange_ulid' => (string) Str::ulid(),
+            'ulid' => (string) Str::ulid(),
             'exchange_name' => $this->faker->word(),
         ];
     }

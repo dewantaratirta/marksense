@@ -18,7 +18,7 @@ class WalletPnl extends Model
      * @var array
      */
     protected $fillable = [
-        'wallet_pnl_ulid',
+        'ulid',
         'wallet_pnl_amount',
         'wallet_pnl_percentage',
         'wallet_pnl_date',

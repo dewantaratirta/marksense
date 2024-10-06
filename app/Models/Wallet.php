@@ -32,6 +32,36 @@ class Wallet extends Model
         'id' => 'integer',
     ];
 
+
+    function addView()
+    {
+        $this->wallet_view += 1;
+        $this->save();
+    }
+
+    function addPopularities()
+    {
+        $count = $this->popularities()->where('popularity_date',
+            now()->format('Y-m-d')
+        )->get();
+
+        if ($count->count() > 0) {
+            $popularity = $count->first();
+            $popularity->popularity_view += 1;
+            $popularity->save();
+            return;
+        }
+
+        $this->popularities()->create([
+            'popularity_view' => 1,
+            'popularity_date' => now(),
+        ]);
+    }
+
+    /**
+     * RELATIONSHIP
+     */
+
     public function walletSettings(): HasMany
     {
         return $this->hasMany(WalletSettings::class);

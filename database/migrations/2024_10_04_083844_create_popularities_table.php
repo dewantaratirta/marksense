@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('popularities', function (Blueprint $table) {
             $table->id();
-            $table->ulid('popularity_ulid')->nullable();
+            $table->ulid('ulid')->nullable();
             $table->string('popularity_view')->default('0');
             $table->date('popularity_date')->nullable()->default(null);
             $table->timestamps();
