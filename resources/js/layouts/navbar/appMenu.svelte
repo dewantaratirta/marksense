@@ -1,8 +1,7 @@
 <script>
-    import BtnProfile from "./components/btnProfile.svelte";
+    import BtnWallet from "./components/btnWallet.svelte";
 </script>
 
-<BtnProfile />
-<div class="relative lg:block">
-    <w3m-button> </w3m-button>
+<div class="relative lg:block flex items-center space-x-2">
+    <BtnWallet />
 </div>

@@ -25,4 +25,4 @@
     }
 </script>
 
-<Link class="btn hover:variant-soft-primary" href={link}>Profile</Link>
+<Link class="btn variant-soft-primary w-full text-left" href={link}>Profile</Link>

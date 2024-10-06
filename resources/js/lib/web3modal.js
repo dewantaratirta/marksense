@@ -48,9 +48,9 @@ export const wagmiConfig = createConfig({
 			appLogoUrl: "https://marksense.io/logo.png",
 			version: "4",
 		}),
-		walletConnect({
-			projectId: projectId,
-		}),
+		// walletConnect({
+		// 	projectId: projectId,
+		// }),
 	],
 	transports:{
 		[base_sepolia.id]: http('https://sepolia.base.org'),

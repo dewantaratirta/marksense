@@ -22,7 +22,7 @@
 
 <header id="shell-header" class="flex-none z-10">
     <div
-        class="app-bar flex flex-col dark bg-surface-100-800-token space-y-4 p-4 shadow-2xl"
+        class="app-bar flex flex-col bg-white space-y-4 p-4 shadow-2xl"
         data-testid="app-bar"
         role="toolbar"
         aria-label=""
@@ -32,7 +32,7 @@
             class="app-bar-row-main grid items-center grid-cols-[auto_1fr_auto] gap-4"
         >
             <div
-                class="app-bar-slot-lead flex-none flex justify-between items-center"
+                class="app-bar-slot-lead flex-none flex justify-between items-center min-w-1"
             >
                 <Icon />
             </div>

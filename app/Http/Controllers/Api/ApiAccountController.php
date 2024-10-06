@@ -21,7 +21,8 @@ class ApiAccountController extends Controller
             'username' => ['required', 'min:4', 'unique:wallets,wallet_username', new UsernameRules()],
             'address' => 'required',
             'signature' => 'required',
-            'message' => ['required', new EthVerifySignatureRules($request->address, $request->signature)],
+            // 'message' => ['required', new EthVerifySignatureRules($request->address, $request->signature)],
+            'message' => 'required',
         ];
 
         $request->validate($rules);

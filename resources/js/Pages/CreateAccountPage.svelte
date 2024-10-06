@@ -2,7 +2,7 @@
     import Layouts from "@/layouts/layouts.svelte";
     import { account, web3modal, wagmiConfig } from "$lib/web3modal";
     import Section from "@/lib/components/Section.svelte";
-    import { signMessage } from "@wagmi/core";
+    import { signMessage, verifyMessage } from "@wagmi/core";
     import {
         Toast,
         getToastStore,
@@ -48,7 +48,13 @@
                 message: message,
             });
 
-            if (_signature !== "null") {
+            const _verify = await verifyMessage(wagmiConfig, {
+                address: $account.address,
+                message: message,
+                signature: _signature,
+            });
+
+            if (_signature !== "null" && _verify) {
                 payload.signature = _signature;
                 payload._token = _token;
                 payload.message = message;
@@ -59,11 +65,13 @@
                 throw new Error("The signature was rejected");
             }
         } catch (error) {
+            console.log(`error: ${error.message}`);
             const t = {
                 message: error.message,
             };
             toastStore.trigger(t);
         }
+        console.log(`finish`);
     };
 
     /**
@@ -123,9 +131,8 @@
                     action={$page.props.api_url}
                 >
                     <div class="flex flex-col space-y-2">
-                        <label
-                            class="block font-medium text-white"
-                            for="wallet-address">Wallet</label
+                        <label class="block font-medium" for="wallet-address"
+                            >Wallet</label
                         ><input
                             id="wallet-address"
                             class="input bg-slate-400 px-4 py-2 outline-none"
@@ -139,14 +146,14 @@
                     </div>
 
                     <div class="flex flex-col space-y-2">
-                        <label class="block font-medium text-white" for="name"
+                        <label class="block font-medium" for="name"
                             >Display Name</label
                         ><input
                             id="display_name"
                             type="text"
                             name="display_name"
                             bind:value={display_name}
-                            class={"form-input px-4 py-3 rounded-full bg-slate-600 " +
+                            class={"form-input px-4 py-3 rounded-full " +
                                 (errors?.display_name
                                     ? "border-2 border-red-500"
                                     : "")}
@@ -158,15 +165,14 @@
                     </div>
 
                     <div class="flex flex-col space-y-2">
-                        <label
-                            class="block font-medium text-white"
-                            for="username">Username</label
+                        <label class="block font-medium" for="username"
+                            >Username</label
                         ><input
                             id="username"
                             type="text"
                             name="username"
                             bind:value={username}
-                            class={"form-input px-4 py-3 rounded-full bg-slate-600 " +
+                            class={"form-input px-4 py-3 rounded-full  " +
                                 (errors?.username
                                     ? "border-2 border-red-500"
                                     : "")}
@@ -183,7 +189,7 @@
                             ><div>
                                 <input
                                     type="checkbox"
-                                    class="h-4 w-4 rounded border-gray-300 focus:ring-indigo-500 text-indigo-600"
+                                    class="h-4 w-4 rounded focus:ring-indigo-500 text-indigo-600"
                                     required="required"
                                 />
                             </div>
@@ -206,7 +212,7 @@
                     </div>
                     <div class="flex justify-end">
                         <button
-                            class="inline-flex items-center justify-center px-4 py-2.5 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none ring-2 ring-offset-2 ring-transparent ring-offset-transparent disabled:bg-gray-400 appearance-none text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-white w-full"
+                            class="btn bg-primary-500 text-white rounded-full hover:bg-primary-400 flex items-center space-x-2 w-full text-center"
                             type="submit"
                             name="_action"
                             value="create"

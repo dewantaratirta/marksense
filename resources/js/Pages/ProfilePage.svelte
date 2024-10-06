@@ -19,7 +19,7 @@
             <div class="card p-6 rounded-lg shadow">
                 <h2 class="text-xl font-semibold mb-4">Personal Information</h2>
                 <p><strong>Name:</strong> {wallet?.wallet_name || ""}</p>
-                <p><strong>Email:</strong> {wallet.wallet_address || "N/A"}</p>
+                <p><strong>Wallet:</strong> {wallet.wallet_address || "N/A"}</p>
                 <p>
                     <strong>Join Date:</strong>
                     {wallet?.created_at

@@ -1,6 +1,6 @@
 import forms from '@tailwindcss/forms';
-// @ts-check
 import { join } from 'path';
+import {myCustomTheme} from './tailwind_custom_themes';
 
 // 1. Import the Skeleton plugin
 import { skeleton } from '@skeletonlabs/tw-plugin';
@@ -24,7 +24,11 @@ const config = {
 	plugins: [
 		// 4. Append the Skeleton plugin (after other plugins)
 		skeleton({
-			themes: { preset: [ "wintry" ] }
+			themes: { preset: [ "wintry" ],
+				custom: [
+					myCustomTheme
+				]
+			 }
 		}),
 		forms
 	]
