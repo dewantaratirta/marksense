@@ -1,5 +1,5 @@
 <script>
-    import { inertia, Link } from "@inertiajs/svelte";
+    import { Link } from "@inertiajs/svelte";
     import Logo from "$lib/components/Logo.svelte";
 </script>
 

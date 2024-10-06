@@ -4,7 +4,6 @@
     import Section from "@/lib/components/Section.svelte";
     import { signMessage, verifyMessage } from "@wagmi/core";
     import {
-        Toast,
         getToastStore,
         initializeStores,
     } from "@skeletonlabs/skeleton";
@@ -250,6 +249,5 @@
             </div>
         </div>
 
-        <Toast />
     </Section>
 </Layouts>

@@ -2,13 +2,20 @@
     import Navbar from "./navbar.svelte";
     import { router } from "@inertiajs/svelte";
     import { initializeStores, Modal } from "@skeletonlabs/skeleton";
+    import {
+        Toast,
+        initializeStores as ToastInitializeStores,
+    } from "@skeletonlabs/skeleton";
+    import { mainState } from "stores/mainStateStore";
 
     let state = "main";
     if (router.page.url.includes("/app")) {
         state = "app";
+        mainState.set("app");
+        console.log($mainState);
     }
     initializeStores();
-    console.log(state);
+    ToastInitializeStores();
 </script>
 
 <div style="display: contents" class="h-full overflow-hidden">
@@ -18,4 +25,5 @@
         <slot />
     </div>
     <Modal />
+    <Toast />
 </div>

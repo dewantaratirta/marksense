@@ -2,7 +2,7 @@ import { createWeb3Modal } from '@web3modal/wagmi';
 import { createConfig, http } from '@wagmi/core';
 import { walletConnect, injected, coinbaseWallet } from "@wagmi/connectors";
 
-import { getAccount, getChainId, reconnect, watchAccount, watchChainId } from '@wagmi/core';
+import { getAccount, getChainId, reconnect as rc, watchAccount, watchChainId } from '@wagmi/core';
 import { readable, writable } from 'svelte/store';
 
 import base_sepolia from './base_sepolia_chain.js';
@@ -45,7 +45,7 @@ export const wagmiConfig = createConfig({
 		coinbaseWallet({
 			appName: "Marksense",
 			preference: "smartWalletOnly",
-			appLogoUrl: "https://marksense.io/logo.png",
+			appLogoUrl: "https://marksense.tech/public/logo.png",
 			version: "4",
 		}),
 		// walletConnect({
@@ -58,7 +58,8 @@ export const wagmiConfig = createConfig({
 	}
 });
 
-reconnect(wagmiConfig);
+export const reconnect = () => {rc(wagmiConfig)};
+reconnect();
 
 let modal = createWeb3Modal({
 	wagmiConfig,

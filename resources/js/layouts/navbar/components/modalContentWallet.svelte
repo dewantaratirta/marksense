@@ -28,7 +28,6 @@
     $: {
         if($web3modal){
             walletInfo = $web3modal?.getWalletInfo();
-            console.log(walletInfo)
         }
     }
 </script>

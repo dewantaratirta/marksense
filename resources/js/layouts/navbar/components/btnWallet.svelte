@@ -1,6 +1,6 @@
 <script>
     import { connect } from "@wagmi/core";
-    import { web3modal, wagmiConfig, account } from "@/lib/web3modal";
+    import { web3modal, wagmiConfig, account, reconnect } from "@/lib/web3modal";
     import modalContentWallet from "./modalContentWallet.svelte";
     import { getModalStore } from "@skeletonlabs/skeleton";
 
@@ -8,9 +8,14 @@
 
     const modalStore = getModalStore();
 
+
     $: {
         if ($web3modal) {
             connector = wagmiConfig.connectors[0];
+        }
+
+        if(!$account?.address){
+            reconnect();
         }
     }
 
