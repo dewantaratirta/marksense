@@ -7,7 +7,7 @@
     import { getToastStore, initializeStores } from "@skeletonlabs/skeleton";
     import TextError from "@/lib/components/TextError.svelte";
 
-    import { page } from "@inertiajs/svelte";
+    import { page, router, Link } from "@inertiajs/svelte";
 
     let form = null; // form element
     let username = "";
@@ -119,6 +119,9 @@
         if (!account_data && !account_data?.address && $web3modal && once < 1) {
             await connectWallet();
             once++;
+        }
+        if (value && value?.address) {
+            router.visit("/app/profile/" + value.address);
         }
     });
 </script>

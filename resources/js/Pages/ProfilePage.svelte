@@ -9,11 +9,12 @@
 
     page.subscribe((value) => {
         wallet = value.props.wallet;
+        console.log(wallet);
     });
 </script>
 
 <Layouts>
     <Section>
-        <HeroProfile {wallet} />
+        <svelte:component this={HeroProfile} {wallet} />
     </Section>
 </Layouts>

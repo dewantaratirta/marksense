@@ -2,7 +2,11 @@
     import { niceAddress } from "@/lib/utils";
     import { account } from "@/lib/web3modal";
     import { Link } from "@inertiajs/svelte";
+
+
     export let wallet;
+    export let enable_edit = true;
+
 </script>
 
 <div class="flex flex-col mt-4">
@@ -10,14 +14,14 @@
         <div class="flex-none sm:flex">
             <div class=" relative h-32 w-32 sm:mb-0 mb-3">
                 <img
-                    src="https://avatar.iran.liara.run/public/25"
+                    src={wallet?.avatar_url}
                     alt="aji"
                     class=" w-32 h-32 object-cover rounded-2xl"
                 />
-                {#if $account?.address === wallet?.wallet_address}
+                {#if $account?.address === wallet?.wallet_address && enable_edit}
                     <Link
                         class="absolute -right-2 bottom-2 -ml-3 text-white p-1 text-xs bg-green-400 hover:bg-green-500 font-medium tracking-wider rounded-full transition ease-in duration-300"
-                        href="/app/wallet/edit"
+                        href={`/app/profile/${$account?.address}/edit`}
                     >
                         <i class="fa-solid fa-pencil"></i>
                     </Link>

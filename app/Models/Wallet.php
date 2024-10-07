@@ -21,6 +21,7 @@ class Wallet extends Model
         'wallet_name',
         'wallet_username',
         'wallet_view',
+        'wallet_avatar',
     ];
 
     /**
@@ -31,6 +32,11 @@ class Wallet extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function getAvatarUrl()
+    {
+        return 'https://avatar.iran.liara.run/public/' . $this->wallet_avatar;
+    }
 
 
     function addView()
@@ -56,6 +62,12 @@ class Wallet extends Model
             'popularity_view' => 1,
             'popularity_date' => now(),
         ]);
+    }
+
+    function addAvatar($id_avatar)
+    {
+        $this->wallet_avatar = $id_avatar;
+        $this->save();
     }
 
     /**

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('wallet_name');
             $table->string('wallet_username');
             $table->string('wallet_view')->default('0');
+            $table->string('wallet_avatar')->nullable()->default(1);
             $table->timestamps();
         });
     }

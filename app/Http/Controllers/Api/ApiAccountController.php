@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Rules\EthVerifySignatureRules;
 use App\Rules\UsernameRules;
 use App\Http\Controllers\Api\Trait\ApiResponseTrait;
+use App\Models\Wallet;
 use App\Repositories\Eloquent\WalletRepository;
 
 class ApiAccountController extends Controller
@@ -40,5 +41,30 @@ class ApiAccountController extends Controller
         }
 
         return $this->success([], 'Account created successfully');
+    }
+
+
+    function edit_avatar(Request $request){
+        $rules = [
+            'avatar' => ['integer', 'required'],
+            'wallet' => ['required', 'exists:wallets,wallet_address'],
+            'signature' => 'required',
+        ];
+
+        $request->validate($rules);
+
+
+        try{
+            $wallet = Wallet::where('wallet_address', $request->wallet)->first();
+            $payload = [
+                'wallet_avatar' => $request->avatar,
+            ];
+
+            $result = app(WalletRepository::class)->update($wallet->id, $payload);
+        } catch(\Exception $e) {
+            return $this->error($e->getMessage(), 400);
+        }
+
+        return $this->success([], 'Avatar has been updated');
     }
 }

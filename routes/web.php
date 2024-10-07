@@ -10,6 +10,7 @@ Route::group(['prefix' => 'app', 'as' => 'app.'], function () {
     Route::get('/', [AppController::class, 'app'])->name('index');
     Route::get('/create_account', [AppController::class, 'create_account'])->name('create_account');
     Route::get('/profile/{wallet}', [AppController::class, 'profile'])->name('profile');
+    Route::get('/profile/{wallet}/edit', [AppController::class, 'profile_edit'])->name('edit');
 });
 
 Auth::routes([
