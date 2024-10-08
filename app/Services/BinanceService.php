@@ -135,7 +135,8 @@ class BinanceService
             return [
                 "pnl" => $pnl,
                 "pnl_percent" => $pnlPercent,
-                "symbol" => $symbol
+                "symbol" => $symbol,
+                "raw" => $result,
             ];
         } catch (\Exception $e) {
             Log::error('Error fetching Binance futures account trade list: ' . $e->getMessage());

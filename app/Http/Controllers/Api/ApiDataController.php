@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\Trait\ApiResponseTrait;
 use App\Models\Wallet;
 use App\Services\BinanceService;
+use Carbon\Carbon;
 
 class ApiDataController extends Controller
 {
@@ -37,18 +38,6 @@ class ApiDataController extends Controller
         return $this->success($binance->asset());
     }
 
-    function futures(Request $request, $wallet)
-    {
-        $wallet = Wallet::where('wallet_address', $wallet)->first();
-        if (!$wallet) return $this->error('Wallet not found', 404);
-
-        $symbol = $request->query('symbol');
-
-        $binance = new BinanceService($wallet->wallet_binance_api_key, $wallet->wallet_binance_api_secret);
-
-        return $this->success($binance->getFuturesAccountTradeList($symbol));
-    }
-
     /**
      * Get available futures pair list
      * 
@@ -74,6 +63,32 @@ class ApiDataController extends Controller
         );
     }
 
+    function futures(Request $request, $wallet)
+    {
+        $wallet = Wallet::where('wallet_address', $wallet)->first();
+        if (!$wallet) return $this->error('Wallet not found', 404);
+
+        $symbol = $request->query('symbol');
+
+        try {
+            $binance = new BinanceService($wallet->wallet_binance_api_key, $wallet->wallet_binance_api_secret);
+            $result = $binance->getFuturesAccountTradeList($symbol);
+            if (count($result) == 0) return $this->error('No data found', 404);
+
+            $result = collect($result)
+                ->map(function ($item) {
+                    $item['human_time'] = Carbon::createFromTimestampMs($item['time'])->format('Y-m-d H:i:s');
+                    return $item;
+                })
+                ->where('realizedPnl', '!=', 0);
+
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage(), 400);
+        }
+
+        return $this->success($result);
+    }
+
     function futures_summary(Request $request, $wallet)
     {
         $wallet = Wallet::where('wallet_address', $wallet)->first();
@@ -82,8 +97,13 @@ class ApiDataController extends Controller
         $symbol = $request->query('symbol');
         $orderId = $request->query('order_id');
 
-        $binance = new BinanceService($wallet->wallet_binance_api_key, $wallet->wallet_binance_api_secret);
+        try {
+            $binance = new BinanceService($wallet->wallet_binance_api_key, $wallet->wallet_binance_api_secret);
+            $result = $binance->getFuturesAccountTradeSummary($symbol, $orderId);
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage(), 400);
+        }
 
-        return $this->success($binance->getFuturesAccountTradeSummary($symbol, $orderId));
+        return $this->success($result);
     }
 }
