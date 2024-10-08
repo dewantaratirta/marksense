@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->ulid('ulid')->nullable();
             $table->string('wallet_settings_name')->unique();
-            $table->string('wallet_settings_value');
+            $table->string('wallet_settings_value')->nullable()->default(null);
+            $table->string('wallet_settings_status')->nullable()->default(null);
             $table->foreignId('wallet_id');
             $table->timestamps();
         });

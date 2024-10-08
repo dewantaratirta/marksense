@@ -16,4 +16,12 @@ Route::group(['prefix' => 'account', 'as' => 'api.account.'], function () {
     Route::post('edit_avatar/{wallet}', [App\Http\Controllers\Api\ApiAccountController::class, 'edit_avatar'])
     ->middleware(['web'])
     ->name('edit_avatar');
+
+    Route::post('edit_profile/{wallet}', [App\Http\Controllers\Api\ApiAccountController::class, 'edit_profile'])
+    ->middleware(['web'])
+    ->name('edit_profile');
+
+    Route::post('edit_api/{wallet}', [App\Http\Controllers\Api\ApiAccountController::class, 'edit_api'])
+    ->middleware(['web'])
+    ->name('edit_api');
 });

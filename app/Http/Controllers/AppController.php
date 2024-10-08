@@ -61,12 +61,15 @@ class AppController extends Controller
         if (!$wallet) return redirect()->route('app.create_account');
 
         $wallet->avatar_url = $wallet->getAvatarUrl();
+        
         return Inertia::render('EditProfilePage', [
-            'wallet' => $wallet,
+            'wallet' => $wallet->makeHidden(['wallet_binance_api_key', 'wallet_binance_api_secret', 'id']),
             'token' => csrf_token(),
             'title' => 'Edit Profile - ' . $wallet->wallet_name . ' - ' . config('variables.templateName'),
             'description' => 'Edit Profile - ' . $wallet->wallet_name . ' - ' . config('variables.templateName'),
             'edit_avatar_url' => route('api.account.edit_avatar', ['wallet' => $wallet->wallet_address]),
+            'edit_profile_url' => route('api.account.edit_profile', ['wallet' => $wallet->wallet_address]),
         ]);
     }
+
 }
