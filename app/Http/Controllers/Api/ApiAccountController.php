@@ -34,9 +34,9 @@ class ApiAccountController extends Controller
             'wallet_username' => $request->username,
         ];
 
-        try{
+        try {
             $result = app(WalletRepository::class)->create($payload);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->error($e->getMessage(), 400);
         }
 
@@ -44,7 +44,8 @@ class ApiAccountController extends Controller
     }
 
 
-    function edit_avatar(Request $request){
+    function edit_avatar(Request $request)
+    {
         $rules = [
             'avatar' => ['integer', 'required'],
             'wallet' => ['required', 'exists:wallets,wallet_address'],
@@ -54,17 +55,69 @@ class ApiAccountController extends Controller
         $request->validate($rules);
 
 
-        try{
+        try {
             $wallet = Wallet::where('wallet_address', $request->wallet)->first();
             $payload = [
                 'wallet_avatar' => $request->avatar,
             ];
 
             $result = app(WalletRepository::class)->update($wallet->id, $payload);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->error($e->getMessage(), 400);
         }
 
         return $this->success([], 'Avatar has been updated');
+    }
+
+    function edit_profile(Request $request)
+    {
+        $rules = [
+            'name' => 'required|min:3',
+            'username' => ['required', 'min:4', new UsernameRules()],
+            'wallet' => ['required', 'exists:wallets,wallet_address'],
+            'signature' => 'required',
+        ];
+
+        $request->validate($rules);
+
+        try {
+            $wallet = Wallet::where('wallet_address', $request->wallet)->first();
+            $payload = [
+                'wallet_username' => $request->username,
+                'wallet_name' => $request->name,
+            ];
+
+            $result = app(WalletRepository::class)->update($wallet->id, $payload);
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage(), 400);
+        }
+
+        return $this->success([], 'Profile has been updated');
+    }
+
+
+    function edit_api(Request $request)
+    {
+        $rules = [
+            'api_key' => 'required',
+            'api_key' => 'required',
+            'wallet' => ['required', 'exists:wallets,wallet_address'],
+            'signature' => 'required',
+        ];
+
+        $request->validate($rules);
+
+        try {
+            $wallet = Wallet::where('wallet_address', $request->wallet)->first();
+            $payload = [
+                'wallet_api_key' => $request->api_key,
+            ];
+
+            $result = app(WalletRepository::class)->update($wallet->id, $payload);
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage(), 400);
+        }
+
+        return $this->success([], 'API key has been updated');
     }
 }

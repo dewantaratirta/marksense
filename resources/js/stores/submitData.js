@@ -65,7 +65,7 @@ const save = async (params) => {
                 _token: token,
             }
             // send the payload to the server using ajax
-            await sendToServer(url, dataToSend);
+            return await sendToServer(url, dataToSend);
         } else {
             throw new Error("The signature was rejected");
         }

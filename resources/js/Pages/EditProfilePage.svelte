@@ -3,6 +3,7 @@
     import { page } from "@inertiajs/svelte";
     import Section from "@/lib/components/Section.svelte";
     import Avatar from "@/lib/components/edit_profile/avatar.svelte";
+    import GeneralInfo from "@/lib/components/edit_profile/generalInfo.svelte";
 
     let wallet = false;
     let user = {};
@@ -24,9 +25,7 @@
             </div>
 
             <div class="w-full lg:w-3/4">
-                <div class="card bg-red-500">
-                    <h4>rightcol</h4>
-                </div>
+                <GeneralInfo {wallet} />
             </div>
         </div>
     </Section>

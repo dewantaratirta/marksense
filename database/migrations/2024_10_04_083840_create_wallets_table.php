@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('wallet_username');
             $table->string('wallet_view')->default('0');
             $table->string('wallet_avatar')->nullable()->default(1);
+            $table->string('wallet_binance_api_key')->nullable()->default(null);
+            $table->string('wallet_binance_api_secret')->nullable()->default(null);
+            $table->smallInteger('wallet_binance_api_status')->nullable()->default(0);
             $table->timestamps();
         });
     }

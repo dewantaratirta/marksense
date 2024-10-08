@@ -1,5 +1,4 @@
 <script>
-    import { niceAddress } from "@/lib/utils";
     import { getModalStore } from "@skeletonlabs/skeleton";
     import ModalContentAvatar from "./modalContentAvatar.svelte";
 
