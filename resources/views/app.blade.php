@@ -19,7 +19,7 @@
     @inertiaHead
 </head>
 
-<body data-theme="my-custom-theme">
+<body data-theme="my-custom-theme" class="overflow-auto">
     @inertia
 </body>
 

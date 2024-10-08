@@ -22,6 +22,9 @@ class Wallet extends Model
         'wallet_username',
         'wallet_view',
         'wallet_avatar',
+        'wallet_binance_api_key',
+        'wallet_binance_api_secret',
+        'wallet_binance_api_status',
     ];
 
     /**

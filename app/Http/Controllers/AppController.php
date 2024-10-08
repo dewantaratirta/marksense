@@ -69,6 +69,7 @@ class AppController extends Controller
             'description' => 'Edit Profile - ' . $wallet->wallet_name . ' - ' . config('variables.templateName'),
             'edit_avatar_url' => route('api.account.edit_avatar', ['wallet' => $wallet->wallet_address]),
             'edit_profile_url' => route('api.account.edit_profile', ['wallet' => $wallet->wallet_address]),
+            'edit_binance_url' => route('api.account.edit_binance_api', ['wallet' => $wallet->wallet_address]),
         ]);
     }
 

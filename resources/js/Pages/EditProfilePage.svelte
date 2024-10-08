@@ -4,6 +4,7 @@
     import Section from "@/lib/components/Section.svelte";
     import Avatar from "@/lib/components/edit_profile/avatar.svelte";
     import GeneralInfo from "@/lib/components/edit_profile/generalInfo.svelte";
+    import UpdateBinance from "@/lib/components/edit_profile/updateBinance.svelte";
 
     let wallet = false;
     let user = {};
@@ -26,7 +27,9 @@
 
             <div class="w-full lg:w-3/4">
                 <GeneralInfo {wallet} />
+                <UpdateBinance {wallet} />
             </div>
+
         </div>
     </Section>
 </Layouts>

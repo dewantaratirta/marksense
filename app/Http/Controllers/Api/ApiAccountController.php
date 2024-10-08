@@ -120,4 +120,29 @@ class ApiAccountController extends Controller
 
         return $this->success([], 'API key has been updated');
     }
+
+
+    function edit_binance_api(Request $request)
+    {
+        $rules = [
+            'wallet_binance_api_key' => 'required',
+            'wallet_binance_api_secret' => 'required',
+        ];
+
+        $request->validate($rules);
+
+        try {
+            $wallet = Wallet::where('wallet_address', $request->wallet)->first();
+            $payload = [
+                'wallet_binance_api_key' => $request->wallet_binance_api_key,
+                'wallet_binance_api_secret' => $request->wallet_binance_api_secret,
+            ];
+
+            $result = app(WalletRepository::class)->update($wallet->id, $payload);
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage(), 400);
+        }
+
+        return $this->success([], 'API key has been updated');
+    }
 }

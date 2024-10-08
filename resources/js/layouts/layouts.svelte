@@ -17,7 +17,6 @@
     import { mainState } from "stores/mainStateStore";
     import Seo from "@/lib/components/Seo.svelte";
 
-
     let state = "main";
     if (router.page.url.includes("/app")) {
         state = "app";
@@ -35,10 +34,10 @@
     const drawerStore = getDrawerStore();
 </script>
 
-<div style="display: contents" class="h-full overflow-hidden">
+<div>
     <Navbar {state} />
 
-    <div id="page-content" class="flex-auto">
+    <div id="page-content">
         <slot />
     </div>
     <Modal />

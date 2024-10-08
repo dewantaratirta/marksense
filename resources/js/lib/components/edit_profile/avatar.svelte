@@ -23,7 +23,7 @@
     }
 </script>
 
-<div class="card bg-white shadow-md p-4">
+<div class="card bg-white shadow-md p-4 mt-4">
     <div class="flex">
         <img
             src={wallet?.avatar_url}
