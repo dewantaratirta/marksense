@@ -24,4 +24,8 @@ Route::group(['prefix' => 'account', 'as' => 'api.account.'], function () {
     Route::post('edit_api/{wallet}', [App\Http\Controllers\Api\ApiAccountController::class, 'edit_api'])
     ->middleware(['web'])
     ->name('edit_api');
+
+    Route::post('edit_api/{wallet}', [App\Http\Controllers\Api\ApiAccountController::class, 'edit_binance_api'])
+    ->middleware(['web'])
+    ->name('edit_binance_api');
 });

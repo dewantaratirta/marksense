@@ -16,6 +16,7 @@
             name: name,
             username: username,
         };
+
         let res = await $submitData({
             data: data,
             url: $page?.props.edit_profile_url,
@@ -37,7 +38,7 @@
     }
 </script>
 
-<div class="card bg-white shadow-md p-4">
+<div class="card bg-white shadow-md p-4 mt-4">
     <div class="flex">
         <div class="ms-2 flex flex-col justify-center">
             <div class="flex items-center">

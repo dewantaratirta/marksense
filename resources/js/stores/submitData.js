@@ -49,8 +49,6 @@ const save = async (params) => {
             message: JSON.stringify(payload),
         });
 
-        console.log(_signature);
-
         const _verify = await verifyMessage(wagmiConfig, {
             address: account_data.address,
             message: JSON.stringify(payload),

@@ -35,17 +35,20 @@
         let data = {
             avatar: selected,
         };
-        console.log($submitData, selected)
-        await $submitData({
+        let res = await $submitData({
             data: data,
             url: $page?.props.edit_avatar_url,
             token: $page.props.token,
         });
+
+        if(!res.hasOwnProperty("errors")) {
+            window.location.reload();
+        }
     };
 </script>
 
 <div class="card bg-white shadow-md p-4 w-3/4">
-        <div class="flex justify-center">
+        <div class="flex justify-center mb-4">
             {#each group_list as group}
                 <button
                     class="btn"

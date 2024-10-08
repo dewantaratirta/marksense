@@ -7,18 +7,18 @@
     const modalStore = getModalStore();
 
     export let wallet;
-    let name = wallet?.wallet_name;
-    let username = wallet?.wallet_username;
+    let key = '';
+    let secret = '';
     let errors = {};
 
     const handleSave = async () => {
         let data = {
-            name: name,
-            username: username,
+            wallet_binance_api_key: key,
+            wallet_binance_api_secret: secret,
         };
         let res = await $submitData({
             data: data,
-            url: $page?.props.edit_profile_url,
+            url: $page?.props.edit_binance_url,
             token: $page.props.token,
         });
 
@@ -26,58 +26,59 @@
             errors = {};
             errors = res.errors;
         } else {
-            res = {};
             // redirect to the dashboard
             window.location.reload();
         }
     };
 
+    console.log($page?.props?.edit_binance_url);
+
     $: {
-        console.log($page?.props.edit_profile_url);
+        console.log($page?.props.edit_binance_url);
     }
 </script>
 
-<div class="card bg-white shadow-md p-4">
+<div class="card bg-white shadow-md p-4 mt-4">
     <div class="flex">
         <div class="ms-2 flex flex-col justify-center">
             <div class="flex items-center">
                 <div class="flex flex-col">
-                    <h4 class="font-bold text-lg">General Information</h4>
+                    <h4 class="font-bold text-lg">Binance API</h4>
                     <br />
 
                     <div class="flex flex-col space-y-2">
                         <label class="block font-medium" for="name"
-                            >Display Name</label
+                            >API Key</label
                         ><input
-                            id="display_name"
+                            id="key"
                             type="text"
-                            name="display_name"
-                            bind:value={name}
+                            name="key"
+                            bind:value={key}
                             class={"form-input px-4 py-3 rounded-full " +
-                                (errors?.name ? "border-2 border-red-500" : "")}
+                                (errors?.key ? "border-2 border-red-500" : "")}
                             required="required"
                         />
                         {#if errors?.name}
-                            <TextError message={errors.name} />
+                            <TextError message={errors.key} />
                         {/if}
                     </div>
 
                     <div class="flex flex-col space-y-2">
                         <label class="block font-medium" for="username"
-                            >Username</label
+                            >Secret</label
                         ><input
-                            id="username"
+                            id="secret"
                             type="text"
-                            name="username"
-                            bind:value={username}
+                            name="secret"
+                            bind:value={secret}
                             class={"form-input px-4 py-3 rounded-full  " +
-                                (errors?.username
+                                (errors?.secret
                                     ? "border-2 border-red-500"
                                     : "")}
                             required="required"
                         />
-                        {#if errors?.username}
-                            <TextError message={errors.username} />
+                        {#if errors?.secret}
+                            <TextError message={errors.secret} />
                         {/if}
                     </div>
 
