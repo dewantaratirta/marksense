@@ -4,11 +4,11 @@
 
 @section('content')
 
-    <div class="row">
-        {{-- import profile_hero --}}
-        @include('profile.profile_hero', ['link_edit' => true])
+<div class="row">
+    {{-- import profile_hero --}}
+    @include('profile.profile_hero', ['link_edit' => true])
 
-    </div>
+</div>
 
 @endsection
 

@@ -20,7 +20,7 @@ class AppController extends Controller
 
     public function app()
     {
-        return Inertia::render('AppPage',[
+        return Inertia::render('AppPage', [
             'title' => 'Explore - ' . config('variables.templateName'),
             'description' => 'Explore - ' . config('variables.templateName'),
         ]);

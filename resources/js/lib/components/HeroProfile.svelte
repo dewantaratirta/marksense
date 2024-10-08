@@ -3,10 +3,8 @@
     import { account } from "@/lib/web3modal";
     import { Link } from "@inertiajs/svelte";
 
-
     export let wallet;
     export let enable_edit = true;
-
 </script>
 
 <div class="flex flex-col mt-4">

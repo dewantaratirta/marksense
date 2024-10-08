@@ -1,8 +1,8 @@
 @php
-    use Illuminate\Support\Carbon;
+use Illuminate\Support\Carbon;
 
-    if (!isset($link_edit)) $link_edit = true;
-    if(!isset($link_back)) $link_back = false;
+if (!isset($link_edit)) $link_edit = true;
+if(!isset($link_back)) $link_back = false;
 @endphp
 
 <div class="row">
@@ -31,19 +31,18 @@
                                 </li>
                             </ul>
                         </div>
-
                         @if ($link_edit)
-                            <a href="{{ route('profile.edit') }}"
-                                class="btn btn-outline-primary waves-effect waves-light">
-                                <i class="ri-user-settings-line ri-16px me-2"></i>Edit Profile
-                            </a>
+                        <a href="{{ route('profile.edit') }}"
+                            class="btn btn-outline-primary waves-effect waves-light">
+                            <i class="ri-user-settings-line ri-16px me-2"></i>Edit Profile
+                        </a>
                         @endif
 
                         @if ($link_back)
-                            <a href="{{ route('profile.index') }}"
-                                class="btn btn-outline-secondary waves-effect">
-                                <i class="ri-arrow-left-line ri-16px me-2"></i> Back
-                            </a>
+                        <a href="{{ route('profile.index') }}"
+                            class="btn btn-outline-secondary waves-effect">
+                            <i class="ri-arrow-left-line ri-16px me-2"></i> Back
+                        </a>
                         @endif
                     </div>
                 </div>
