@@ -15,12 +15,16 @@ class ApiDataController extends Controller
 
     function check(Request $request)
     {
-        $key = $request->query('api_key');
-        $secret = $request->query('api_secret');
+        $key = $request->query('api_key') ?? $request->query('wallet_binance_api_key');
+        $secret = $request->query('api_secret') ?? $request->query('wallet_binance_api_secret');
 
+        if(!$key || !$secret) return $this->error('API key or Secret cannot be empty', 400);
+        
         $binance = new BinanceService($key, $secret);
+        $binance_account = $binance->account();
+        if(!$binance_account) return $this->error('Invalid API Key or Secret', 400);
 
-        return $this->success($binance->account());
+        return $this->success($binance_account);
     }
 
     function assets(Request $request, $wallet)
