@@ -42,6 +42,10 @@ Route::group(['prefix' => 'data', 'as' => 'api.data.'], function () {
         ->middleware(['web'])
         ->name('future');
 
+    Route::get('/futures_pair_list/{wallet}', [App\Http\Controllers\Api\ApiDataController::class, 'futures_pair_list'])
+        ->middleware(['web'])
+        ->name('futures_pair_list');
+
     Route::get('/futures_summary/{wallet}', [App\Http\Controllers\Api\ApiDataController::class, 'futures_summary'])
         ->middleware(['web'])
         ->name('futures_summary');

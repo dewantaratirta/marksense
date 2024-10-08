@@ -55,9 +55,9 @@
 
         let ToastSettings = {
             message: "Binance API updated successfully",
-            // callback: () => {
-            //     window.location.reload();
-            // },
+            callback: () => {
+                window.location.reload();
+            },
         };
         toastStore.trigger(ToastSettings);
         return;

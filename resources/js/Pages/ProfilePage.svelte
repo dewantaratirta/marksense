@@ -3,6 +3,7 @@
     import { page } from "@inertiajs/svelte";
     import Section from "@/lib/components/Section.svelte";
     import HeroProfile from "@/lib/components/HeroProfile.svelte";
+    import ButtonProfile from "@/lib/components/ButtonProfile/Index.svelte";
 
     let wallet = false;
     let user = {};
@@ -16,5 +17,6 @@
 <Layouts>
     <Section>
         <svelte:component this={HeroProfile} {wallet} />
+        <svelte:component this={ButtonProfile} {wallet} />
     </Section>
 </Layouts>

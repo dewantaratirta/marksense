@@ -18,11 +18,11 @@ class ApiDataController extends Controller
         $key = $request->query('api_key') ?? $request->query('wallet_binance_api_key');
         $secret = $request->query('api_secret') ?? $request->query('wallet_binance_api_secret');
 
-        if(!$key || !$secret) return $this->error('API key or Secret cannot be empty', 400);
-        
+        if (!$key || !$secret) return $this->error('API key or Secret cannot be empty', 400);
+
         $binance = new BinanceService($key, $secret);
         $binance_account = $binance->account();
-        if(!$binance_account) return $this->error('Invalid API Key or Secret', 400);
+        if (!$binance_account) return $this->error('Invalid API Key or Secret', 400);
 
         return $this->success($binance_account);
     }
@@ -40,13 +40,38 @@ class ApiDataController extends Controller
     function futures(Request $request, $wallet)
     {
         $wallet = Wallet::where('wallet_address', $wallet)->first();
-        if (!$wallet) return redirect()->route('app.create_account');
+        if (!$wallet) return $this->error('Wallet not found', 404);
 
         $symbol = $request->query('symbol');
 
         $binance = new BinanceService($wallet->wallet_binance_api_key, $wallet->wallet_binance_api_secret);
 
         return $this->success($binance->getFuturesAccountTradeList($symbol));
+    }
+
+    /**
+     * Get available futures pair list
+     * 
+     * @param Request $request
+     * @param string $wallet
+     * @return JsonResponse
+     */
+    function futures_pair_list(Request $request, $wallet)
+    {
+        $wallet = Wallet::where('wallet_address', $wallet)->first();
+        if (!$wallet) return $this->error('Wallet not found', 404);
+
+        $binance = new BinanceService($wallet->wallet_binance_api_key, $wallet->wallet_binance_api_secret);
+        $results = $binance->getFuturesAccountTradeList('');
+        if (!$results) return $this->error('No data found', 404);
+
+        $results = collect($results)->map(function ($item) {
+            return $item['symbol'];
+        })->unique();
+
+        return $this->success(
+            $results
+        );
     }
 
     function futures_summary(Request $request, $wallet)
