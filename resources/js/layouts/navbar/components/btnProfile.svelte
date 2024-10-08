@@ -1,7 +1,8 @@
 <script>
     import { web3modal, account as accountInfo } from "@/lib/web3modal";
     import { inertia, Link } from "@inertiajs/svelte";
-    export let classNames = 'variant-soft-primary';
+    export let classNames = "variant-soft-primary";
+    export let basicClass = "btn w-full text-left ";
 
     let modal = false;
     let account = "";
@@ -26,4 +27,4 @@
     }
 </script>
 
-<Link class={"btn w-full text-left " + classNames} href={link}>Profile</Link>
+<Link class={basicClass + classNames} href={link}>Profile</Link>

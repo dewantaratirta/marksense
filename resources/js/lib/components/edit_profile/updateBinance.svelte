@@ -3,19 +3,22 @@
     import TextError from "@/lib/components/TextError.svelte";
     import { page } from "@inertiajs/svelte";
     import { submitData } from "@/stores/submitData";
-
-    const modalStore = getModalStore();
+    import { getToastStore } from "@skeletonlabs/skeleton";
+    import BinanceLogo from "@/lib/components/binanceLogo.svelte";
 
     export let wallet;
-    let key = '';
-    let secret = '';
+    let key = "";
+    let secret = "";
     let errors = {};
+
+    const toastStore = getToastStore();
 
     const handleSave = async () => {
         let data = {
             wallet_binance_api_key: key,
             wallet_binance_api_secret: secret,
         };
+
         let res = await $submitData({
             data: data,
             url: $page?.props.edit_binance_url,
@@ -25,16 +28,43 @@
         if (res.hasOwnProperty("errors")) {
             errors = {};
             errors = res.errors;
-        } else {
-            // redirect to the dashboard
-            window.location.reload();
         }
+
+        if (res.hasOwnProperty("status") && res.status === "error") {
+            errors = {};
+            errors.invalid = res.message;
+        }
+
+        let count = Object.keys(errors).length;
+        if (count > 0) {
+            // loop errors
+            let errors_msg = "";
+            for (let key in errors) {
+                if (errors.hasOwnProperty(key)) {
+                    let element = errors[key];
+                    errors_msg += element + "\n";
+                }
+            }
+            let ToastSettings = {
+                message: errors_msg,
+                background: "variant-filled-error",
+            };
+            toastStore.trigger(ToastSettings);
+            return;
+        }
+
+        let ToastSettings = {
+            message: "Binance API updated successfully",
+            // callback: () => {
+            //     window.location.reload();
+            // },
+        };
+        toastStore.trigger(ToastSettings);
+        return;
     };
 
-    console.log($page?.props?.edit_binance_url);
-
     $: {
-        console.log($page?.props.edit_binance_url);
+        console.log($page?.props);
     }
 </script>
 
@@ -43,7 +73,24 @@
         <div class="ms-2 flex flex-col justify-center">
             <div class="flex items-center">
                 <div class="flex flex-col">
-                    <h4 class="font-bold text-lg">Binance API</h4>
+
+                    <div class="flex-row flex items-center">
+                        <h4 class="font-bold text-lg">Binance API</h4>
+                        {#if wallet?.wallet_binance_api_status && wallet?.wallet_binance_api_status == 1}
+                            <span
+                                class="font-medium text-primary-500 text-sm mx-2"
+                                >Connected
+                            </span>
+                            <BinanceLogo className="h-4 w-4" />
+                        {:else}
+                            <span
+                                class="font-medium text-slate-400 text-sm mx-2"
+                                >Not Connected</span
+                            >
+                            <BinanceLogo className="h-4 w-4" />
+                        {/if}
+                    </div>
+                    
                     <br />
 
                     <div class="flex flex-col space-y-2">

@@ -10,6 +10,7 @@ use App\Rules\UsernameRules;
 use App\Http\Controllers\Api\Trait\ApiResponseTrait;
 use App\Models\Wallet;
 use App\Repositories\Eloquent\WalletRepository;
+use App\Services\BinanceService;
 
 class ApiAccountController extends Controller
 {
@@ -133,12 +134,19 @@ class ApiAccountController extends Controller
 
         try {
             $wallet = Wallet::where('wallet_address', $request->wallet)->first();
+
+            $binance = new BinanceService($request->wallet_binance_api_key, $request->wallet_binance_api_secret);
+            $binance_account = $binance->account();            
+
+            if(!$binance_account) return $this->error('Invalid API key', 400);
+
             $payload = [
                 'wallet_binance_api_key' => $request->wallet_binance_api_key,
                 'wallet_binance_api_secret' => $request->wallet_binance_api_secret,
+                'wallet_binance_api_status' => 1
             ];
-
             $result = app(WalletRepository::class)->update($wallet->id, $payload);
+
         } catch (\Exception $e) {
             return $this->error($e->getMessage(), 400);
         }
