@@ -42,6 +42,12 @@
       "stores/*": [
         "./resources/js/stores/*"
       ],
+      "@img": [
+        "./resources/assets/img"
+      ],
+      "@img/*": [
+        "./resources/assets/img/*"
+      ],
     }
   },
   /**

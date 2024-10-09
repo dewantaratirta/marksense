@@ -9,7 +9,19 @@ export const nicePnL = (pnl) => {
 	  return `${pnl > 0 ? '+' : ''}${pnl.toFixed(2)}`
 }
 
+//generate random string with length as params
+export const randomString = (length) => {
+	  let result = '';
+	  let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	  let charactersLength = characters.length;
+	  for (let i = 0; i < length; i++) {
+		result += characters.charAt(Math.floor(Math.random() * charactersLength));
+	  }
+	  return result;
+}
+
 export default{
 	niceAddress,
-	nicePnL
+	nicePnL,
+	randomString
 }

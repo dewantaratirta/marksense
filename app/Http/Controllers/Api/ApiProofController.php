@@ -16,7 +16,7 @@ class ApiProofController extends Controller
     function asset(Request $request, $wallet)
     {
         $wallet = Wallet::where('wallet_address', $wallet)->first();
-        if (!$wallet) return redirect()->route('app.create_account');
+        if (!$wallet) return $this->error('Wallet not found', 404);
 
         $proof = new ProofService($wallet->wallet_binance_api_key, $wallet->wallet_binance_api_secret);
 
@@ -32,7 +32,8 @@ class ApiProofController extends Controller
     function future(Request $request, $wallet)
     {
         $wallet = Wallet::where('wallet_address', $wallet)->first();
-        if (!$wallet) return redirect()->route('app.create_account');
+        if (!$wallet) return $this->error('Wallet not found', 404);
+
 
         $proof = new ProofService($wallet->wallet_binance_api_key, $wallet->wallet_binance_api_secret);
 

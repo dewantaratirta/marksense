@@ -1,15 +1,25 @@
-@import './../sass/font-awesome/css/all.min.css';
+@import "./../sass/font-awesome/css/all.min.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html, body { @apply h-full overflow-hidden; }
-html.dark body{
-  
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+.font-montserrat {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
 }
 
+html,
+body {
+    @apply h-full overflow-hidden;
+}
+html.dark body {
+}
 
-.bg-gradient-1{
+.bg-gradient-1 {
     background-image: radial-gradient(
             at 0% 0%,
             rgba(var(--color-secondary-500) / 0.33) 0px,
@@ -21,22 +31,45 @@ html.dark body{
             transparent 50%
         );
 }
-.bg-gradient-2{
-    background-image: radial-gradient(at 0% 100%,rgba(var(--color-secondary-500) / .5) 0px,transparent 50%)
+.bg-gradient-2 {
+    background-image: radial-gradient(
+        at 0% 100%,
+        rgba(var(--color-secondary-500) / 0.5) 0px,
+        transparent 50%
+    );
 }
-.bg-gradient-3{
-    background-image: radial-gradient(at 0% 0%,rgba(var(--color-secondary-500) / .5) 0px,transparent 50%),radial-gradient(at 100% 100%,rgba(var(--color-primary-500) / .24) 0px,transparent 50%)
+.bg-gradient-3 {
+    background-image: radial-gradient(
+            at 0% 0%,
+            rgba(var(--color-secondary-500) / 0.5) 0px,
+            transparent 50%
+        ),
+        radial-gradient(
+            at 100% 100%,
+            rgba(var(--color-primary-500) / 0.24) 0px,
+            transparent 50%
+        );
 }
-.bg-gradient-4{
-    background-image: radial-gradient(at 0% 0%,rgba(var(--color-secondary-500) / .33) 0px,transparent 50%),radial-gradient(at 100% 0%,rgba(var(--color-primary-500) / .33) 0px,transparent 50%)
+.bg-gradient-4 {
+    background-image: radial-gradient(
+            at 0% 0%,
+            rgba(var(--color-secondary-500) / 0.33) 0px,
+            transparent 50%
+        ),
+        radial-gradient(
+            at 100% 0%,
+            rgba(var(--color-primary-500) / 0.33) 0px,
+            transparent 50%
+        );
 }
 
-.drawer-backdrop, .modal-backdrop{
+.drawer-backdrop,
+.modal-backdrop {
     background-color: rgba(0, 0, 0, 0.5);
-    margin:0px !important;
+    margin: 0px !important;
 }
 
-:root{
+:root {
     --w3m-color-mix: #000 !important;
     /* --w3m-accent: #6B7280; */
     /* --w3m-default: #fff; */

@@ -67,7 +67,8 @@ export default defineConfig({
                 'utils/*': `/resources/js/utils/*`,
                 'stores': `/resources/js/stores`,
                 'stores/*': `/resources/js/stores/*`,
-                "@img": "/public/img",
+                "@img": "/resources/assets/img",
+                "@img/*": "/resources/assets/img/*",
             }
         }),
     ],
@@ -89,7 +90,8 @@ export default defineConfig({
             'utils/*': `/resources/js/utils/*`,
             'stores': `/resources/js/stores`,
             'stores/*': `/resources/js/stores/*`,
-            "@img": "/public/img",
+            "@img": "/resources/assets/img",
+            "@img/*": "/resources/assets/img/*",
         },
         extensions: [".js", ".svelte", ".json", '.ts', '.tsx'],
     }

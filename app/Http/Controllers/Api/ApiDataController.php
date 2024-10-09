@@ -112,6 +112,7 @@ class ApiDataController extends Controller
         try {
             $binance = new BinanceService($wallet->wallet_binance_api_key, $wallet->wallet_binance_api_secret);
             $result = $binance->getFuturesAccountTradeSummary($symbol, $orderId);
+            $result['wallet'] = $wallet->getPublicData();
         } catch (\Exception $e) {
             return $this->error($e->getMessage(), 400);
         }

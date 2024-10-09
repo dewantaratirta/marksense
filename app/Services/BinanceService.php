@@ -131,12 +131,17 @@ class BinanceService
             } else {
                 $pnlPercent = ($quoteQty / 100) * $pnl;
             }
-
+            $pnl = number_format($pnl, 2, '.', '');
+            $pnlPercent = number_format($pnlPercent, 2, '.', '');
+            $commission_asset = $result[0]["commissionAsset"];
+            $human_time = \Carbon\Carbon::createFromTimestampMs($result[0]["time"])->format('Y-m-d H:i');
             return [
                 "pnl" => $pnl,
                 "pnl_percent" => $pnlPercent,
                 "symbol" => $symbol,
-                "raw" => $result,
+                "commission_asset" => $commission_asset,
+                "human_time" => $human_time,
+                "reserve_ulid" => \Illuminate\Support\Str::ulid()
             ];
         } catch (\Exception $e) {
             Log::error('Error fetching Binance futures account trade list: ' . $e->getMessage());

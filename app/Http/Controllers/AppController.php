@@ -47,7 +47,7 @@ class AppController extends Controller
         $wallet->addView();
         $wallet->addPopularities();
 
-        $wallet->avatar_url = $wallet->getAvatarUrl();
+        $wallet->getPublicData();
         return Inertia::render('ProfilePage', [
             'wallet' => $wallet,
             'title' => $wallet->wallet_name . ' - ' . config('variables.templateName'),
@@ -60,7 +60,7 @@ class AppController extends Controller
         $wallet = Wallet::where('wallet_address', $wallet)->first();
         if (!$wallet) return redirect()->route('app.create_account');
 
-        $wallet->avatar_url = $wallet->getAvatarUrl();
+        $wallet->getPublicData();
         
         return Inertia::render('EditProfilePage', [
             'wallet' => $wallet->makeHidden(['wallet_binance_api_key', 'wallet_binance_api_secret', 'id']),
@@ -71,6 +71,11 @@ class AppController extends Controller
             'edit_profile_url' => route('api.account.edit_profile', ['wallet' => $wallet->wallet_address]),
             'edit_binance_url' => route('api.account.edit_binance_api', ['wallet' => $wallet->wallet_address]),
         ]);
+    }
+
+    function test()
+    {
+        return Inertia::render('TestPage');
     }
 
 }
