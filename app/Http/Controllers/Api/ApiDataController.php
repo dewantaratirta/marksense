@@ -76,12 +76,24 @@ class ApiDataController extends Controller
             if (count($result) == 0) return $this->error('No data found', 404);
 
             $result = collect($result)
-                ->map(function ($item) {
-                    $item['human_time'] = Carbon::createFromTimestampMs($item['time'])->format('Y-m-d H:i:s');
-                    return $item;
-                })
-                ->where('realizedPnl', '!=', 0);
-
+                ->groupBy('orderId')
+                ->map(function ($orders) {
+                    return [
+                        'buyer' => $orders->first()['buyer'],
+                        'commission' => $orders->sum(function ($order) {
+                            return (float)$order['commission'];
+                        }),
+                        'commissionAsset' => $orders->first()['commissionAsset'],
+                        'maker' => $orders->first()['maker'],
+                        'orderId' => $orders->first()['orderId'],
+                        'realizedPnl' => $orders->sum(function ($order) {
+                            return (float)$order['realizedPnl'];
+                        }),
+                        'symbol' => $orders->first()['symbol'],
+                        'time' => $orders->first()['time'],
+                        'human_time' => Carbon::createFromTimestampMs($orders->first()['time'])->format('Y-m-d H:i:s'),
+                    ];
+                })->where('realizedPnl', '!=', 0);
         } catch (\Exception $e) {
             return $this->error($e->getMessage(), 400);
         }
