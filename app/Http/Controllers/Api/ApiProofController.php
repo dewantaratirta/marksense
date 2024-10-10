@@ -60,16 +60,21 @@ class ApiProofController extends Controller
             if ($result['status'] != 200) {
                 return $this->error($result['data'], 400);
             } else {
-                $pnls = $wallet->tradePnls()->create([
-                    'wallet_pnl_amount' => $futures['pnl'],
-                    'wallet_pnl_percentage' => $futures['pnl_percent'],
-                    'wallet_pnl_date' =>  Carbon::createFromFormat('Y-m-d H:i', $futures['human_time'])->format('Y-m-d'),
-                    'wallet_pnl_view' => 0,
-                    // 'wallet_proof_id' => $result['data']['proof_id'],
-                    'wallet_pnl_symbol' => $futures['symbol'],
-                    'wallet_proof_data' => serialize($result['data'])
-                ]);
-                return $this->success($result['data']);
+                $pnl = new \App\Models\TradePnl();
+                $pnl->fill([
+                    'trade_pnl_amount' => $futures['pnl'],
+                    'trade_pnl_percentage' => $futures['pnl_percent'],
+                    'trade_pnl_date' =>  Carbon::createFromFormat('Y-m-d H:i', $futures['human_time'])->format('Y-m-d'),
+                    'trade_pnl_view' => 0,
+                    // 'trade_proof_id' => $result['data']['proof_id'],
+                    'trade_pnl_symbol' => $symbol,
+                    'trade_pnl_trade_id' => $orderId,
+                    'trade_proof_data' => serialize($result['data']),
+                    'ulid' => $valid['reserve_ulid'],
+                    'wallet_id' => $wallet->id
+                ])->save();
+                $pnl->addMedia($request->file('file'))
+                ->toMediaCollection('image', 'uploads');
             }
         } catch (\Exception $e) {
             Log::error($e->getMessage());

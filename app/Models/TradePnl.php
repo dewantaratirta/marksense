@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class TradePnl extends Model
+class TradePnl extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -18,13 +20,15 @@ class TradePnl extends Model
      * @var array
      */
     protected $fillable = [
-        'trade_pnl_ulid',
+        'ulid',
         'trade_pnl_amount',
         'trade_pnl_percentage',
         'trade_pnl_date',
         'trade_pnl_view',
         'trade_proof_id',
         'trade_proof_data',
+        'trade_pnl_trade_id',
+        'trade_pnl_symbol',
         'wallet_id',
     ];
 
@@ -40,6 +44,11 @@ class TradePnl extends Model
         'trade_pnl_date' => 'date',
         'wallet_id' => 'integer',
     ];
+
+    public function getImageUrl()
+    {
+        return $this->media()->first()->getFullUrl();
+    }
 
     public function exchanges(): HasOne
     {
