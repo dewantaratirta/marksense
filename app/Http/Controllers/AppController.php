@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TradePnl;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -71,6 +72,15 @@ class AppController extends Controller
             'edit_avatar_url' => route('api.account.edit_avatar', ['wallet' => $wallet->wallet_address]),
             'edit_profile_url' => route('api.account.edit_profile', ['wallet' => $wallet->wallet_address]),
             'edit_binance_url' => route('api.account.edit_binance_api', ['wallet' => $wallet->wallet_address]),
+        ]);
+    }
+
+    public function trade(TradePnl $trade)
+    {
+        $wallet = $trade->wallet->getPublicData();
+        return Inertia::render('TradePage', [
+            'trade' => $trade->getPublicData(),
+            'wallet' => $wallet,
         ]);
     }
 

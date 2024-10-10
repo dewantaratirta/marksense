@@ -2,17 +2,13 @@
     import Navbar from "./navbar.svelte";
     import { router } from "@inertiajs/svelte";
     import { initializeStores, Modal } from "@skeletonlabs/skeleton";
-    import {
-        initializeStores as InitializeDrawerStore,
-        Drawer,
-        getDrawerStore,
-    } from "@skeletonlabs/skeleton";
+    import { Drawer, getDrawerStore } from "@skeletonlabs/skeleton";
     import MenuDrawer from "./navbar/menuDrawer.svelte";
 
     initializeStores();
     import {
         Toast,
-        initializeStores as ToastInitializeStores,
+        // initializeStores as ToastInitializeStores,
     } from "@skeletonlabs/skeleton";
     import { mainState } from "stores/mainStateStore";
     import Seo from "@/lib/components/Seo.svelte";
@@ -28,8 +24,8 @@
         console.log($mainState);
     }
     initializeStores();
-    ToastInitializeStores();
-    InitializeDrawerStore();
+    // ToastInitializeStores();
+    // InitializeDrawerStore();
 
     const drawerStore = getDrawerStore();
 </script>

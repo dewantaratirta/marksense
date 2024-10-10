@@ -1,7 +1,6 @@
 <script>
     import { getModalStore } from "@skeletonlabs/skeleton";
     import { account, web3modal, wagmiConfig } from "@/lib/web3modal";
-    import { ConicGradient } from "@skeletonlabs/skeleton";
     import toastError from "@/lib/components/ToastError.js";
     import { onMount } from "svelte";
     import { nicePnL } from "@/lib/utils.js";
@@ -25,6 +24,8 @@
     let tradeData = {};
     let loading = true;
     let canvasFutureUrl = false;
+    let generateProofFutureLoading = false;
+    let generateProofFutureResult = false;
 
     const handleCloseModal = () => {
         modalStore.close();
@@ -156,9 +157,9 @@
 
     const generateProof = async () => {
 
+        generateProofFutureLoading = true;
         try {
             //blob_url to file
-            $canvasFutureStore
             const response = await fetch(canvasFutureUrl);
             const blob = await response.blob();
             const file = new File([blob], "canvasFuture.png", { type: "image/png" });
@@ -188,10 +189,16 @@
                     body: formData,
                 }
             ).then((res) => res.json());
-            console.log(res);
+            if(res.status == 'error'){
+                throw new Error(res.message);
+            }
+            generateProofFutureResult = true;
+            window.location.reload();
         } catch (e) {
             console.log(e);
+            generateProofFutureResult = false;
         }
+        generateProofFutureLoading = false;
     };
 
     canvasFutureStore.subscribe((value) => {
@@ -315,6 +322,30 @@
                     {/if}
                 </div>
             </div>
+        {:else if mode == 'generate_proof'}
+            {#if generateProofFutureLoading}
+                <div class="flex justify-center items-center my-4">
+                    <p>Generating Proof...</p>
+                </div>
+            {:else}
+                {#if generateProofFutureResult}
+                    <div class="flex justify-center items-center my-4">
+                        <p>Proof Generated</p>
+                    </div>
+                {:else}
+                    <div class="flex flex-col justify-center items-center my-4">
+                        <p class="mb-2">Failed to generate proof</p>
+
+                        <!-- button retry -->
+                        <button
+                            class="btn bg-primary-500 text-white rounded-full hover:bg-primary-400"
+                            on:click={() => {
+                                switchMode("generate_proof");
+                            }}
+                        >Retry</button>
+                    </div>
+                {/if}
+            {/if}
         {/if}
     {/if}
 </div>

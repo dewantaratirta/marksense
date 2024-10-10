@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -39,11 +40,24 @@ class TradePnl extends Model implements HasMedia
      */
     protected $casts = [
         'id' => 'integer',
-        'trade_pnl_amount' => 'decimal',
-        'trade_pnl_percentage' => 'decimal',
+        'trade_pnl_amount' => 'decimal:2',
+        'trade_pnl_percentage' => 'decimal:2',
         'trade_pnl_date' => 'date',
         'wallet_id' => 'integer',
     ];
+
+    public function getPublicData()
+    {
+        $this->makeHidden([
+            'id',
+            'trade_proof_id',
+            'trade_proof_data',
+            'wallet_id',
+        ]);
+        $this->human_date = Carbon::parse($this->trade_pnl_date)->format('d/m/Y');
+        $this->image_url = $this->getImageUrl();
+        return $this;
+    }
 
     public function getImageUrl()
     {
