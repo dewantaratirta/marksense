@@ -51,8 +51,8 @@ class ApiProofController extends Controller
 
             $proof = new ProofService($wallet->wallet_binance_api_key, $wallet->BinanceService);
 
-            $symbol = $request->query('symbol');
-            $orderId = $request->query('order_id');
+            $symbol = $request->input('symbol');
+            $orderId = $request->input('order_id');
 
             $result = $proof->getFutureProof($symbol, $orderId);
 
