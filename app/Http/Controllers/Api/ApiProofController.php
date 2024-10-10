@@ -49,7 +49,7 @@ class ApiProofController extends Controller
             $binance = new BinanceService($wallet->wallet_binance_api_key, $wallet->wallet_binance_api_secret);
             $futures = $binance->getFuturesAccountTradeSummary($valid['symbol'], $valid['order_id']);
 
-            $proof = new ProofService($wallet->wallet_binance_api_key, $wallet->BinanceService);
+            $proof = new ProofService($wallet->wallet_binance_api_key, $wallet->wallet_binance_api_secret);
 
             $symbol = $request->input('symbol');
             $orderId = $request->input('order_id');
