@@ -2,15 +2,39 @@
 
 namespace App\Models;
 
+use App\Models\Trait\HasCustomUlid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Spatie\Image\Enums\CropPosition;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class WalletPnl extends Model
+class WalletPnl extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
+
+    protected static function boot()
+    {
+        static::creating(function ($model) {
+            if(empty($model->ulid)){
+                $model->ulid = \Illuminate\Support\Str::ulid();
+            }
+        });
+    }
+    
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'ulid';
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +50,7 @@ class WalletPnl extends Model
         'wallet_proof_id',
         'wallet_proof_data',
         'wallet_id',
+        'wallet_pnl_symbol',
     ];
 
     /**
@@ -40,6 +65,16 @@ class WalletPnl extends Model
         'wallet_pnl_date' => 'date',
         'wallet_id' => 'integer',
     ];
+
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width(200)
+            ->height(200)
+            ->crop(100, 100, CropPosition::Center);
+    }
+
 
     public function wallet(): BelongsTo
     {

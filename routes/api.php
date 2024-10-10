@@ -57,7 +57,7 @@ Route::group(['prefix' => 'proof', 'as' => 'api.proof.'], function () {
         ->middleware(['web'])
         ->name('assets');
 
-    Route::get('/future/{wallet}', [App\Http\Controllers\Api\ApiProofController::class, 'future'])
+    Route::post('/future/{wallet}', [App\Http\Controllers\Api\ApiProofController::class, 'future'])
         ->middleware(['web'])
         ->name('future');
 });

@@ -8,6 +8,7 @@
 
     export let wallet;
 
+
     const handleCreateFuturesPNL = () => {
         const modalSetting = {
             type: "component",

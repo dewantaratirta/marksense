@@ -39,7 +39,6 @@ const save = async (params) => {
     };
 
 
-
     try {
         if(!account_data?.address) {
             await connectWallet();

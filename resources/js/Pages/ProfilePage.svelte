@@ -4,14 +4,16 @@
     import Section from "@/lib/components/Section.svelte";
     import HeroProfile from "@/lib/components/HeroProfile.svelte";
     import ButtonProfile from "@/lib/components/ButtonProfile/Index.svelte";
+    import {onMount} from "svelte";
 
     let wallet = false;
     let user = {};
 
-    page.subscribe((value) => {
-        wallet = value.props.wallet;
-        console.log(wallet);
-    });
+    onMount(()=>{
+        page.subscribe((value) => {
+            wallet = value.props.wallet;
+        });
+    })
 </script>
 
 <Layouts>

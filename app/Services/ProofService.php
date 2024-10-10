@@ -70,15 +70,15 @@ class ProofService
 
             $statusCode = $response->getStatusCode();
             $responseData = json_decode($response->getBody(), true);
-
             return [
                 'status' => $statusCode,
                 'data' => $responseData
             ];
         } catch (\GuzzleHttp\Exception\RequestException $e) {
+            Log::error($e->getMessage());
             return [
                 'status' => 400,
-                'data' => "error create proof"
+                'data' => $e->getMessage()
             ];
         }
     }

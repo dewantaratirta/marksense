@@ -7,6 +7,10 @@
     import { nicePnL } from "@/lib/utils.js";
     import GenerateImagePnLFutures from "@/lib/components/GenerateImagePnLFutures.svelte";
     import { canvasFutureStore } from "@/stores/canvasFutureStore";
+    import { page } from "@inertiajs/svelte";
+
+
+    console.log('$page',$page);
 
     export let wallet;
     let mode = "";
@@ -150,16 +154,39 @@
         loading = false;
     };
 
-    const generate_proof = async () => {
+    const generateProof = async () => {
+
         try {
+            //blob_url to file
+            $canvasFutureStore
+            const response = await fetch(canvasFutureUrl);
+            const blob = await response.blob();
+            const file = new File([blob], "canvasFuture.png", { type: "image/png" });
+            
+
+            console.log(`tradeData`, tradeData)
+            const formData = new FormData();
+            formData.append("_token", $page?.props?.token);
+            formData.append("file", file);
+
+            Array.from(Object.keys(tradeData)).forEach((key) => {
+                formData.append(key, tradeData[key]);
+            });
+            // for(keys in tradeData){
+            //     formData.append(keys, tradeData[keys]);
+            // }
+
             let res = await fetch(
                 `/api/proof/future/${$account?.address}?symbol=${choosenPair}&order_id=${choosenTrade}`,
                 {
+                    method: "POST",
                     headers: {
-                        "Content-Type": "application/json",
+                        // 'Content-Type': 'multipart/form-data',
+                        ContentType: "application/json",
                         Accept: "application/json",
                     },
-                },
+                    body: formData,
+                }
             ).then((res) => res.json());
             console.log(res);
         } catch (e) {

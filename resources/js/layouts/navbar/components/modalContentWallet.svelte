@@ -5,6 +5,7 @@
     import { getModalStore } from "@skeletonlabs/skeleton";
     import { clipboard } from "@skeletonlabs/skeleton";
     import BtnProfile from "./btnProfile.svelte";
+    import Basenames from '@/lib/components/ButtonProfile/Basenames';
 
     const { chains } = wagmiConfig;
 
@@ -82,6 +83,7 @@
                 }}
             >
                 <span class="text-white">Disconnect</span>
+                <Basenames />
             </button>
         </div>
     </div>

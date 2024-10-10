@@ -17,8 +17,8 @@ return new class extends Migration
             $table->decimal('wallet_pnl_amount')->nullable()->default(0);
             $table->decimal('wallet_pnl_percentage')->nullable()->default(0);
             $table->date('wallet_pnl_date')->nullable()->default(null);
+            $table->string('wallet_pnl_symbol')->nullable();
             $table->string('wallet_pnl_view')->default('0');
-            $table->string('wallet_proof_id')->nullable();
             $table->string('wallet_proof_data')->nullable();
             $table->foreignId('wallet_id');
             $table->timestamps();

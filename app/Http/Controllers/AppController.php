@@ -52,6 +52,7 @@ class AppController extends Controller
             'wallet' => $wallet,
             'title' => $wallet->wallet_name . ' - ' . config('variables.templateName'),
             'description' => $wallet->wallet_name . ' - ' . config('variables.templateName'),
+            'token' => csrf_token(),
         ]);
     }
 
