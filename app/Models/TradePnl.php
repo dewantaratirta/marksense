@@ -59,9 +59,35 @@ class TradePnl extends Model implements HasMedia
         return $this;
     }
 
+    function addView()
+    {
+        $this->trade_pnl_view += 1;
+        $this->save();
+    }
+
+    function addPopularities()
+    {
+        $count = $this->popularities()->where(
+            'popularity_date',
+            now()->format('Y-m-d')
+        )->get();
+
+        if ($count->count() > 0) {
+            $popularity = $count->first();
+            $popularity->popularity_view += 1;
+            $popularity->save();
+            return;
+        }
+
+        $this->popularities()->create([
+            'popularity_view' => 1,
+            'popularity_date' => now(),
+        ]);
+    }
+
     public function getImageUrl()
     {
-        return $this->media()->first()->getFullUrl();
+        return $this->media->first()->getFullUrl();
     }
 
     public function exchanges(): HasOne

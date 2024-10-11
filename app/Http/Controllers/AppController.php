@@ -21,9 +21,45 @@ class AppController extends Controller
 
     public function app()
     {
+        # get popular wallets
+        $popular_wallets = Wallet::orderBy('wallet_view', 'desc')->limit(10)->get();
+        $popular_wallets->map(function ($item) {
+            return $item->getPublicData();
+        });
+
+        # hottest wallets by popularity
+        $hottest_wallets = Wallet::with(['popularities' => function ($query) {
+            $query->where('popularity_date', '>=', \Carbon\Carbon::now()->startOfMonth())
+            ->where('popularity_date', '<=', \Carbon\Carbon::now()->endOfMonth())
+            ->orderBy('popularity_view', 'desc');
+        }])->limit(10)->get();
+        $hottest_wallets->map(function ($item) {
+            return $item->getPublicData();
+        });
+
+        # get popular trades
+        $popular_trades = TradePnl::orderBy('trade_pnl_view', 'desc')->with(['media'])->limit(10)->get();
+        $popular_trades->map(function ($item) {
+            return $item->getPublicData();
+        });
+
+        # hottest trades by popularity
+        $hottest_trades = TradePnl::with(['popularities' => function ($query) {
+            $query->where('popularity_date', '>=', \Carbon\Carbon::now()->startOfMonth())
+            ->where('popularity_date', '<=', \Carbon\Carbon::now()->endOfMonth())
+            ->orderBy('popularity_view', 'desc');
+        }, 'media'])->limit(10)->get();
+        $hottest_trades->map(function ($item) {
+            return $item->getPublicData();
+        });
+
         return Inertia::render('AppPage', [
             'title' => 'Explore - ' . config('variables.templateName'),
             'description' => 'Explore - ' . config('variables.templateName'),
+            'popular_wallets' => $popular_wallets,
+            'hottest_wallets' => $hottest_wallets,
+            'popular_trades' => $popular_trades,
+            'hottest_trades' => $hottest_trades,
         ]);
     }
 
@@ -86,6 +122,9 @@ class AppController extends Controller
     public function trade(TradePnl $trade)
     {
         $wallet = $trade->wallet->getPublicData();
+        $trade->addView();
+        $trade->addPopularities();
+
         return Inertia::render('TradePage', [
             'trade' => $trade->getPublicData(),
             'wallet' => $wallet,

@@ -6,7 +6,7 @@
     console.log(trade);
 </script>
 
-{#if trade.length > 0}
+{#if typeof(trade) == 'object' && trade.length > 0}
     <div class="p-4 m-4">
         {#if title}
             <h4 class="h4 font-bold">{title}</h4>
@@ -17,7 +17,7 @@
         >
         {#each trade as item, i}
             <div
-                class="snap-start shrink-0 card w-40 md:w-80 text-center"
+                class="snap-start shrink-0 card w-40 md:w-80 text-center card-hover"
             >
                     <!-- image -->
                     <Link class="flex justify-center" href={'/app/trade/'+ item.ulid}>
