@@ -61,11 +61,16 @@ class TradePnl extends Model implements HasMedia
         $this->makeHidden([
             'id',
             'trade_proof_id',
-            'trade_proof_data',
             'wallet_id',
         ]);
         $this->human_date = Carbon::parse($this->trade_pnl_date)->format('d/m/Y');
         $this->image_url = $this->getImageUrl();
+        return $this;
+    }
+
+    public function unserializedProofData():self
+    {
+        $this->unserialized_proof = unserialize($this->trade_proof_data);
         return $this;
     }
 

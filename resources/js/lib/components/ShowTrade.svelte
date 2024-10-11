@@ -1,12 +1,25 @@
 <script>
     import { niceAddress } from "@/lib/utils";
     import { Link } from "@inertiajs/svelte";
+    import { getDrawerStore } from "@skeletonlabs/skeleton";
+    import { tradeDetails } from "@/stores/tradeDetailStore.js";
 
     export let trade;
     export let wallet;
 
-    console.log(trade);
-    console.log(wallet);
+    const drawerStore = getDrawerStore();
+
+    tradeDetails.set(trade);
+
+    const handleClickViewData = () => {
+        const setting = {
+            id: "trade-details",
+            width: "w-3/4",
+            props: { trade },
+            position: "left"
+        };
+        drawerStore.open(setting);
+    };
 </script>
 
 <div class="flex flex-col items-center">
@@ -21,16 +34,14 @@
                     />
                 </header>
                 <div class="p-4 space-y-4">
-                    <h3 class="h3" data-toc-ignore="">{trade?.trade_pnl_symbol}</h3>
-                    <!-- <article>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Numquam aspernatur provident eveniet eligendi
-                            cumque consequatur tempore sint nisi sapiente. Iste
-                            beatae laboriosam iure molestias cum expedita
-                            architecto itaque quae rem.
-                        </p>
-                    </article> -->
+                    <h3 class="h3" data-toc-ignore="">
+                        {trade?.trade_pnl_symbol}
+                    </h3>
+                    <button
+                        class="btn variant-soft-primary w-full"
+                        id="show_data"
+                        on:click={handleClickViewData}>View Metadata</button
+                    >
                 </div>
                 <hr class="opacity-50" />
                 <footer class="p-4 flex justify-start items-center space-x-4">
@@ -47,8 +58,15 @@
                     </figure>
                     <div class="flex-auto flex justify-between items-center">
                         <Link href={`/app/profile/${wallet?.wallet_address}`}>
-                            <h6 class="font-bold" data-toc-ignore="">@{wallet.wallet_username}</h6>
-                            <p class="text-sm text-gray-500">{niceAddress(wallet?.wallet_address ?? "                                   ")}</p>
+                            <h6 class="font-bold" data-toc-ignore="">
+                                @{wallet.wallet_username}
+                            </h6>
+                            <p class="text-sm text-gray-500">
+                                {niceAddress(
+                                    wallet?.wallet_address ??
+                                        "                                   ",
+                                )}
+                            </p>
                         </Link>
                         <small>On {trade?.human_date}</small>
                     </div>

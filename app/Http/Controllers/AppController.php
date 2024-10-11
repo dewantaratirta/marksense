@@ -13,9 +13,9 @@ class AppController extends Controller
     {
         return Inertia::render(
             'IndexPage',
-            // [
-            //     'token' => csrf_token(),
-            // ]
+            [
+                'title' => 'Marksense - Bring PnL Onchain'
+            ]
         );
     }
 
@@ -126,7 +126,7 @@ class AppController extends Controller
         $trade->addPopularities();
 
         return Inertia::render('TradePage', [
-            'trade' => $trade->getPublicData(),
+            'trade' => $trade->unserializedProofData()->getPublicData(),
             'wallet' => $wallet,
         ]);
     }

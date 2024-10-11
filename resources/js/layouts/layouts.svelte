@@ -4,6 +4,7 @@
     import { initializeStores, Modal } from "@skeletonlabs/skeleton";
     import { Drawer, getDrawerStore } from "@skeletonlabs/skeleton";
     import MenuDrawer from "./navbar/menuDrawer.svelte";
+    import TradeDetails from "@/lib/components/TradeDetails.svelte";
 
     initializeStores();
     import {
@@ -41,6 +42,8 @@
     <Drawer>
         {#if $drawerStore.id == "mobile-menu"}
             <svelte:component this={MenuDrawer} />
+        {:else if $drawerStore.id == "trade-details"}
+            <svelte:component this={TradeDetails} />
         {/if}
     </Drawer>
     <Seo />
