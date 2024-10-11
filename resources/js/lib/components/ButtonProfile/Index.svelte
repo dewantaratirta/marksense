@@ -4,6 +4,8 @@
     import { Link } from "@inertiajs/svelte";
     import { getModalStore } from "@skeletonlabs/skeleton";
     import CreateFuturesPnLModal from "@/lib/components/ButtonProfile/CreateFuturesPnLModal.svelte";
+    import ButtonEditProfile from "@/lib/components/ButtonProfile/ButtonEditProfile.svelte";
+
     const modalStore = getModalStore();
 
     export let wallet;
@@ -19,9 +21,12 @@
 </script>
 
 {#if $account?.address === wallet?.wallet_address}
-    <div class="flex flex-col mt-2">
+    <div class="flex justify-end mt-2 px-4">
+        <ButtonEditProfile 
+        basicClass={"btn rounded"}
+        classNames="block variant-soft-primary bg-white border border-primary-300 me-2"/>
         <button
-            class="btn variant-soft-primary"
+            class="btn variant-soft-primary block "
             on:click={handleCreateFuturesPNL}>Create Futures PNL</button
         >
     </div>

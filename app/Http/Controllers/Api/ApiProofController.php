@@ -75,6 +75,8 @@ class ApiProofController extends Controller
                 ])->save();
                 $pnl->addMedia($request->file('file'))
                 ->toMediaCollection('image', 'uploads');
+
+                return $this->success($result['data']);
             }
         } catch (\Exception $e) {
             Log::error($e->getMessage());

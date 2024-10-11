@@ -7,35 +7,35 @@
     "file": "assets/axios-CCb-kr4I.js",
     "name": "axios"
   },
-  "_hooks.module-DHOMWRkt.js": {
-    "file": "assets/hooks.module-DHOMWRkt.js",
+  "_hooks.module-DNJMgc5m.js": {
+    "file": "assets/hooks.module-DNJMgc5m.js",
     "name": "hooks.module",
     "imports": [
       "resources/js/frontpage.js",
       "__commonjsHelpers-BosuxZz1.js"
     ]
   },
-  "_index-BUC_pb1h.js": {
-    "file": "assets/index-BUC_pb1h.js",
+  "_index-Cl0Ia2YE.js": {
+    "file": "assets/index-Cl0Ia2YE.js",
     "name": "index",
     "isDynamicEntry": true,
     "imports": [
       "__commonjsHelpers-BosuxZz1.js",
       "resources/js/frontpage.js",
-      "_hooks.module-DHOMWRkt.js"
+      "_hooks.module-DNJMgc5m.js"
     ]
   },
-  "_index-BecHZVPg.js": {
-    "file": "assets/index-BecHZVPg.js",
+  "_index-DzbZSuv3.js": {
+    "file": "assets/index-DzbZSuv3.js",
     "name": "index",
     "isDynamicEntry": true,
     "imports": [
       "__commonjsHelpers-BosuxZz1.js",
-      "_hooks.module-DHOMWRkt.js"
+      "_hooks.module-DNJMgc5m.js"
     ]
   },
   "node_modules/@web3modal/scaffold-ui/dist/esm/exports/w3m-modal.js": {
-    "file": "assets/w3m-modal-Sjuf7vyY.js",
+    "file": "assets/w3m-modal-CUpGv-1n.js",
     "name": "w3m-modal",
     "src": "node_modules/@web3modal/scaffold-ui/dist/esm/exports/w3m-modal.js",
     "isDynamicEntry": true,
@@ -50,7 +50,7 @@
     ]
   },
   "node_modules/@web3modal/siwe/dist/esm/exports/index.js": {
-    "file": "assets/index-Cg4Zf-gb.js",
+    "file": "assets/index-CRdybKjq.js",
     "name": "index",
     "src": "node_modules/@web3modal/siwe/dist/esm/exports/index.js",
     "isDynamicEntry": true,
@@ -61,7 +61,7 @@
     ]
   },
   "node_modules/@web3modal/ui/dist/esm/index.js": {
-    "file": "assets/index-B-0po2rD.js",
+    "file": "assets/index-D91roHjL.js",
     "name": "index",
     "src": "node_modules/@web3modal/ui/dist/esm/index.js",
     "isDynamicEntry": true,
@@ -92,7 +92,7 @@
     "src": "node_modules/remixicon/fonts/remixicon.woff2"
   },
   "node_modules/viem/_esm/utils/ccip.js": {
-    "file": "assets/ccip-C-wtpEgw.js",
+    "file": "assets/ccip-C_yMsxsB.js",
     "name": "ccip",
     "src": "node_modules/viem/_esm/utils/ccip.js",
     "isDynamicEntry": true,
@@ -239,7 +239,7 @@
     "isEntry": true
   },
   "resources/css/frontpage.pcss": {
-    "file": "assets/frontpage-CBUhyVZs.css",
+    "file": "assets/frontpage-DP5ubkSE.css",
     "src": "resources/css/frontpage.pcss",
     "isEntry": true
   },
@@ -257,7 +257,7 @@
     ]
   },
   "resources/js/frontpage.js": {
-    "file": "assets/frontpage-BWsiNchQ.js",
+    "file": "assets/frontpage-Dafj9NAX.js",
     "name": "frontpage",
     "src": "resources/js/frontpage.js",
     "isEntry": true,
@@ -275,8 +275,8 @@
       "node_modules/@web3modal/siwe/dist/esm/exports/index.js",
       "node_modules/@web3modal/siwe/dist/esm/exports/index.js",
       "node_modules/@web3modal/siwe/dist/esm/exports/index.js",
-      "_index-BecHZVPg.js",
-      "_index-BUC_pb1h.js"
+      "_index-DzbZSuv3.js",
+      "_index-Cl0Ia2YE.js"
     ],
     "css": [
       "assets/frontpage-CPHj3uLv.css"

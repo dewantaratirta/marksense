@@ -6,6 +6,7 @@
     import { clipboard } from "@skeletonlabs/skeleton";
     import BtnProfile from "./btnProfile.svelte";
     import Basenames from '@/lib/components/ButtonProfile/Basenames';
+    import ButtonEditProfile from "@/lib/components/ButtonProfile/ButtonEditProfile.svelte";
 
     const { chains } = wagmiConfig;
 
@@ -75,6 +76,9 @@
         </div>
 
         <BtnProfile />
+
+        <ButtonEditProfile classNames='mt-2 variant-soft-primary bg-white border border-primary-300'/>
+
         <div class="flex items" style="margin-top: 2rem;">
             <button
                 class="btn w-full bg-primary-500 text-white rounded-full hover:bg-primary-400 flex items-center space-x-2"

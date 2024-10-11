@@ -47,13 +47,21 @@ class AppController extends Controller
 
         $wallet->addView();
         $wallet->addPopularities();
-
         $wallet->getPublicData();
+
+        $trade = $wallet->tradePnls()->orderBy('created_at', 'desc')->get();
+        if (count($trade) > 0) {
+            $trade->map(function ($item) {
+                return $item->getPublicData();
+            });
+        }
+
         return Inertia::render('ProfilePage', [
             'wallet' => $wallet,
             'title' => $wallet->wallet_name . ' - ' . config('variables.templateName'),
             'description' => $wallet->wallet_name . ' - ' . config('variables.templateName'),
             'token' => csrf_token(),
+            'trade' => $trade,
         ]);
     }
 
@@ -63,7 +71,7 @@ class AppController extends Controller
         if (!$wallet) return redirect()->route('app.create_account');
 
         $wallet->getPublicData();
-        
+
         return Inertia::render('EditProfilePage', [
             'wallet' => $wallet->makeHidden(['wallet_binance_api_key', 'wallet_binance_api_secret', 'id']),
             'token' => csrf_token(),
@@ -88,5 +96,4 @@ class AppController extends Controller
     {
         return Inertia::render('TestPage');
     }
-
 }
