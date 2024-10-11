@@ -46,6 +46,16 @@ class TradePnl extends Model implements HasMedia
         'wallet_id' => 'integer',
     ];
 
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'ulid';
+    }
+
     public function getPublicData()
     {
         $this->makeHidden([
