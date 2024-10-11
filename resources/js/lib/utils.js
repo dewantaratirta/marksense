@@ -1,3 +1,10 @@
+import {clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+ export function cn(...inputs) {
+	return twMerge(clsx(inputs));
+ }
+
 export const niceAddress = (address) => {
 	  return `${address.slice(0, 4)}...${address.slice(-6)}`
 }

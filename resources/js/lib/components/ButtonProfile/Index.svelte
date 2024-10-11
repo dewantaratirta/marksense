@@ -26,10 +26,10 @@
         basicClass={"btn rounded"}
         classNames="block variant-soft-primary bg-white border border-primary-300 me-2"/>
 
-
         <button
             class="btn variant-soft-primary block "
-            on:click={handleCreateFuturesPNL}>Create Futures PNL
+            on:click={handleCreateFuturesPNL}>
+            Create Futures PNL
             <i class="fa-sharp-duotone fa-solid fa-sparkles"></i>
             </button
         >
