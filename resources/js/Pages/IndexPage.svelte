@@ -26,11 +26,11 @@
                     >
                         <FlipText
                             class="relative h1 text-center text-4xl font-bold tracking-[-0.1em] text-white dark:text-white md:text-7xl md:leading-[5rem]"
-                            word="Bring PnL onchain."
+                            word="Bring PnL On-Chain."
                         />
                         <FlipText
                             class="relative h1 text-center text-4xl font-bold tracking-[-0.1em] text-white dark:text-white md:text-7xl md:leading-[5rem]"
-                            word="Build on Base."
+                            word="Built on Base."
                         />
                     </div>
                     <DotPattern
@@ -89,7 +89,7 @@
                         <h2
                             class="z-10 whitespace-pre-wrap text-center text-5xl font-medium tracking-tighter text-primary-500 mb-12"
                         >
-                            Build with
+                            Built with
                         </h2>
 
                         <div

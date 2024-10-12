@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en_EN" >
+<html lang="en_EN">
 
 <head>
     <meta charset="utf-8" />
@@ -15,6 +15,13 @@
     @else
         @vite(['resources/js/frontpage.js', 'resources/css/frontpage.css'])
     @endif --}}
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/favicon-16x16.png')}}">
+    <link rel="manifest" href="{{ asset('/site.webmanifest')}}">
+    <meta name="msapplication-TileColor" content="#0052ff" />
+    <meta name="theme-color" content="#0052ff" />
 
     @inertiaHead
 </head>

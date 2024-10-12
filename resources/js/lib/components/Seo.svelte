@@ -12,4 +12,4 @@
     }
 </script>
 
-<SvelteSeo title={title} description={description} />
+<SvelteSeo {title} {description} themeColor=""></SvelteSeo>
