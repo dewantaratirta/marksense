@@ -7,28 +7,36 @@
 </script>
 
 {#if typeof wallet == "object" && wallet.length > 0}
-    <div class="p-4 m-4">
-        {#if title}
-            <h4 class="h4 font-bold">{title}</h4>
-        {/if}
-
-        <div class="flex overflow-x-scroll pb-8 hide-scroll-bar">
-            {#each wallet as item}
-                <div class="flex flex-nowrap md:ml-10 ml-2">
-                    <div class="inline-block px-3">
-                        <Link href={`/app/profile/${item?.wallet_address}`}
-                            class="relative flex flex-col w-40 h-40 max-w-xs overflow-hidden bg-white transition-shadow duration-300 ease-in-out "
-                        >
-                            <div>
-                                <img src={item?.avatar_url} alt="" />
-                            </div>
-                            <p class="absolute left-0 bottom-0 text-center w-full">@{item?.wallet_username}</p>
-                        </Link>
-                    </div>
-                </div>
-            {/each}
+    <section class="">
+        <div class="p-4 m-4">
+            {#if title}
+                <h4 class="h4 font-bold">{title}</h4>
+            {/if}
         </div>
-    </div>
+        <div
+            class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6"
+        >
+            <div
+                class="grid gap-8 lg:gap-16 grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+            >
+                {#each wallet as item}
+                    <div class="text-center text-gray-500 dark:text-gray-400">
+                        <img
+                            class="mx-auto mb-4 w-36 h-36 rounded-full"
+                            src={item?.avatar_url}
+                            alt={item?.wallet_name}
+                        />
+                        <h3
+                            class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                        >
+                            <a href="#">{item?.wallet_name}</a>
+                        </h3>
+                        <p>@{item?.wallet_username}</p>
+                    </div>
+                {/each}
+            </div>
+        </div>
+    </section>
 {:else}
     <div class="p-4 m-4">
         {#if title}
@@ -43,3 +51,4 @@
         </aside>
     </div>
 {/if}
+
