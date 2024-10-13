@@ -16,9 +16,21 @@
 
 <Layouts>
     <Section>
-        <WalletList wallet={$page?.props?.hottest_wallets} title="Hottest User 🔥" />
-        <WalletList wallet={$page?.props?.popular_wallets} title="Most Viewed User" />
-        <TradeList trade={$page?.props?.hottest_trades} title="Hottest Trade 🔥" />
-        <TradeList trade={$page?.props?.popular_trades} title="Most Viewed Trade" />
+        <WalletList
+            wallet={$page?.props?.hottest_wallets}
+            title="Hottest User 🔥"
+        />
+        <WalletList
+            wallet={$page?.props?.popular_wallets}
+            title="Most Viewed User"
+        />
+        <TradeList
+            trade={$page?.props?.hottest_trades}
+            title="Hottest Trade 🔥"
+        />
+        <TradeList
+            trade={$page?.props?.popular_trades}
+            title="Most Viewed Trade"
+        />
     </Section>
 </Layouts>

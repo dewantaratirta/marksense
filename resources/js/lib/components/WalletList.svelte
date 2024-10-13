@@ -20,19 +20,23 @@
                 class="grid gap-8 lg:gap-16 grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
             >
                 {#each wallet as item}
-                    <div class="text-center text-gray-500 dark:text-gray-400">
-                        <img
-                            class="mx-auto mb-4 w-36 h-36 rounded-full"
-                            src={item?.avatar_url}
-                            alt={item?.wallet_name}
-                        />
-                        <h3
-                            class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                    <Link href={`/app/profile/${item?.wallet_address}`}>
+                        <div
+                            class="text-center text-gray-500 dark:text-gray-400"
                         >
-                            <a href="#">{item?.wallet_name}</a>
-                        </h3>
-                        <p>@{item?.wallet_username}</p>
-                    </div>
+                            <img
+                                class="mx-auto mb-4 w-36 h-36 rounded-full"
+                                src={item?.avatar_url}
+                                alt={item?.wallet_name}
+                            />
+                            <h4
+                                class="mb-1 h4 font-bold tracking-tight text-gray-900 dark:text-white"
+                            >
+                                {item?.wallet_name}
+                            </h4>
+                            <p>@{item?.wallet_username}</p>
+                        </div>
+                    </Link>
                 {/each}
             </div>
         </div>
@@ -51,4 +55,3 @@
         </aside>
     </div>
 {/if}
-
