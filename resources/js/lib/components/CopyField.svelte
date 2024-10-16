@@ -2,6 +2,8 @@
     import { clipboard } from "@skeletonlabs/skeleton";
     import { getToastStore } from "@skeletonlabs/skeleton";
 
+    const toastStore = getToastStore();
+
     export let className = "";
     export let baseClass = "flex-row inline-flex items-center rounded-md";
     export let text = "This is Text";
@@ -15,7 +17,6 @@
                 class="btn variant-soft text-sm text-surface-200"
                 use:clipboard={text} on:click={
                     () => {
-                        const toastStore = getToastStore();
                         toastStore.trigger({
                             message: "Copied to clipboard",
                             background: "variant-filled-success",
