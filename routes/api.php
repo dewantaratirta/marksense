@@ -60,4 +60,8 @@ Route::group(['prefix' => 'proof', 'as' => 'api.proof.'], function () {
     Route::post('/future/{wallet}', [App\Http\Controllers\Api\ApiProofController::class, 'future'])
         ->middleware(['web'])
         ->name('future');
+
+    Route::get('futures/metadata/{trade_pnls}', [App\Http\Controllers\Api\ApiProofController::class, 'futures_metadata'])
+        ->middleware(['web'])
+        ->name('futures_metadata');
 });

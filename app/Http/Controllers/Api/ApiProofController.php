@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Http\Controllers\Api\Trait\ApiResponseTrait;
+use App\Models\TradePnl;
 use App\Models\Wallet;
 use App\Services\ProofService;
 use App\Services\BinanceService;
@@ -82,5 +83,47 @@ class ApiProofController extends Controller
             Log::error($e->getMessage());
             return $this->error($e->getMessage(), 400);
         }
+    }
+
+
+    function futures_metadata(Request $request, TradePnl $trade_pnls)
+    {
+        $trade_pnls->getPublicData();
+
+        //unserialized proof data
+        $proof = unserialize($trade_pnls->trade_proof_data);
+        $timestamp = $proof['transformedProof']['signedClaim']['claim']['timestampS'];
+
+        $results = (object)[
+            'name' => 'Proof of PnL #'.$trade_pnls->ulid,
+            'description' => 'Binance Futures Proof of PnL',
+            'image' => $trade_pnls->getFirstMediaUrl('image'),
+            'external_url' => route('app.trade_pnl', $trade_pnls->ulid),
+            'attributes' => [
+                [
+                    'trait_type' => 'exchange',
+                    'value' => 'Binance'
+                ],
+                [
+                    'trait_type' => 'pnl_amount',
+                    'value' => $trade_pnls->trade_pnl_amount
+                ],
+                [
+                    'trait_type' => 'pnl_percentage',
+                    'value' => $trade_pnls->trade_pnl_percentage
+                ],
+                [
+                    'trait_type' => 'pnl_date',
+                    'value' => Carbon::parse($trade_pnls->trade_pnl_date)->timestamp
+                ],
+                [
+                    'trait_type' => 'timestamp',
+                    'value' => $timestamp
+                ],
+            ],
+            'proof' => $proof
+        ];
+
+        return response()->json($results);
     }
 }
