@@ -87,7 +87,6 @@
                 }}
             >
                 <span class="text-white">Disconnect</span>
-                <Basenames />
             </button>
         </div>
     </div>

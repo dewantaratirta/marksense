@@ -7,35 +7,35 @@
     "file": "assets/axios-CCb-kr4I.js",
     "name": "axios"
   },
-  "_hooks.module-YU3X0Kw6.js": {
-    "file": "assets/hooks.module-YU3X0Kw6.js",
+  "_hooks.module-B1rwZmMd.js": {
+    "file": "assets/hooks.module-B1rwZmMd.js",
     "name": "hooks.module",
     "imports": [
       "resources/js/frontpage.js",
       "__commonjsHelpers-BosuxZz1.js"
     ]
   },
-  "_index-CZjaKcEz.js": {
-    "file": "assets/index-CZjaKcEz.js",
+  "_index-BRos0LV7.js": {
+    "file": "assets/index-BRos0LV7.js",
+    "name": "index",
+    "isDynamicEntry": true,
+    "imports": [
+      "__commonjsHelpers-BosuxZz1.js",
+      "_hooks.module-B1rwZmMd.js"
+    ]
+  },
+  "_index-DGSRZxQX.js": {
+    "file": "assets/index-DGSRZxQX.js",
     "name": "index",
     "isDynamicEntry": true,
     "imports": [
       "__commonjsHelpers-BosuxZz1.js",
       "resources/js/frontpage.js",
-      "_hooks.module-YU3X0Kw6.js"
-    ]
-  },
-  "_index-D7ciurhI.js": {
-    "file": "assets/index-D7ciurhI.js",
-    "name": "index",
-    "isDynamicEntry": true,
-    "imports": [
-      "__commonjsHelpers-BosuxZz1.js",
-      "_hooks.module-YU3X0Kw6.js"
+      "_hooks.module-B1rwZmMd.js"
     ]
   },
   "node_modules/@web3modal/scaffold-ui/dist/esm/exports/w3m-modal.js": {
-    "file": "assets/w3m-modal-D1GlpvgE.js",
+    "file": "assets/w3m-modal-Dax4zLNK.js",
     "name": "w3m-modal",
     "src": "node_modules/@web3modal/scaffold-ui/dist/esm/exports/w3m-modal.js",
     "isDynamicEntry": true,
@@ -50,7 +50,7 @@
     ]
   },
   "node_modules/@web3modal/siwe/dist/esm/exports/index.js": {
-    "file": "assets/index-BpjudzeU.js",
+    "file": "assets/index-B5KYNTqE.js",
     "name": "index",
     "src": "node_modules/@web3modal/siwe/dist/esm/exports/index.js",
     "isDynamicEntry": true,
@@ -61,7 +61,7 @@
     ]
   },
   "node_modules/@web3modal/ui/dist/esm/index.js": {
-    "file": "assets/index-BGZvZQWp.js",
+    "file": "assets/index-lH0LdH0D.js",
     "name": "index",
     "src": "node_modules/@web3modal/ui/dist/esm/index.js",
     "isDynamicEntry": true,
@@ -92,7 +92,7 @@
     "src": "node_modules/remixicon/fonts/remixicon.woff2"
   },
   "node_modules/viem/_esm/utils/ccip.js": {
-    "file": "assets/ccip-7hR961PV.js",
+    "file": "assets/ccip-7CgHe2tW.js",
     "name": "ccip",
     "src": "node_modules/viem/_esm/utils/ccip.js",
     "isDynamicEntry": true,
@@ -239,7 +239,7 @@
     "isEntry": true
   },
   "resources/css/frontpage.pcss": {
-    "file": "assets/frontpage-DqhhiWBd.css",
+    "file": "assets/frontpage-DUtVOgN5.css",
     "src": "resources/css/frontpage.pcss",
     "isEntry": true
   },
@@ -257,7 +257,7 @@
     ]
   },
   "resources/js/frontpage.js": {
-    "file": "assets/frontpage-gxbEvle-.js",
+    "file": "assets/frontpage-LXPKe-Mn.js",
     "name": "frontpage",
     "src": "resources/js/frontpage.js",
     "isEntry": true,
@@ -275,11 +275,11 @@
       "node_modules/@web3modal/siwe/dist/esm/exports/index.js",
       "node_modules/@web3modal/siwe/dist/esm/exports/index.js",
       "node_modules/@web3modal/siwe/dist/esm/exports/index.js",
-      "_index-D7ciurhI.js",
-      "_index-CZjaKcEz.js"
+      "_index-BRos0LV7.js",
+      "_index-DGSRZxQX.js"
     ],
     "css": [
-      "assets/frontpage-BxpLQrkP.css"
+      "assets/frontpage-CHU4ljjC.css"
     ],
     "assets": [
       "assets/binance_icon-Cl_VwBtL.png",
