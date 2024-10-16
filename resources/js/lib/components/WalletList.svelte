@@ -3,7 +3,6 @@
     export let wallet;
     export let title = false;
 
-    console.log(wallet);
 </script>
 
 {#if typeof wallet == "object" && wallet.length > 0}

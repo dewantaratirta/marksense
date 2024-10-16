@@ -7,9 +7,9 @@
     import Ripple from "@/lib/components/Ripple.svelte";
     import MagicCard from "@/lib/components/MagicCard.svelte";
     import { Link } from "@inertiajs/svelte";
-    import BinanceIcon from "$lib/components/icon/binance_icon.png";
-    import BaseIcon from "$lib/components/icon/base.png";
-    import CoinbaseIcon from "$lib/components/svg/smartwallet.svg";
+    import BinanceIcon from "@/lib/components/icon/binance_icon.png";
+    import BaseIcon from "@/lib/components/icon/base.png";
+    import CoinbaseIcon from "@/lib/components/svg/smartwallet.svg";
 </script>
 
 <Layouts>
@@ -65,14 +65,14 @@
                             href="/app"
                             class="relative flex h-[400px] w-full flex-col items-center justify-center overflow-hidden bg-background"
                         >
-                        <div>
-                            <p
-                                class="z-10 whitespace-pre-wrap text-center text-5xl font-medium tracking-tighter text-primary-500"
-                            >
-                                Explore Verified Trades Now
-                            </p>
-                            <Ripple />
-                        </div>
+                            <div>
+                                <p
+                                    class="z-10 whitespace-pre-wrap text-center text-5xl font-medium tracking-tighter text-primary-500"
+                                >
+                                    Explore Verified Trades Now
+                                </p>
+                                <Ripple />
+                            </div>
                         </Link>
                     </div>
                 </div>

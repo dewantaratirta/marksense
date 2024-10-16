@@ -113,8 +113,8 @@ class ApiProofController extends Controller
                     'value' => $trade_pnls->trade_pnl_percentage
                 ],
                 [
-                    'trait_type' => 'pnl_date',
-                    'value' => Carbon::parse($trade_pnls->trade_pnl_date)->timestamp
+                    'trait_type' => 'symbol',
+                    'value' => $trade_pnls->trade_pnl_symbol
                 ],
                 [
                     'trait_type' => 'timestamp',

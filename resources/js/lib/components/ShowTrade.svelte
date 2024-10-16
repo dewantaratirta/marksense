@@ -1,8 +1,10 @@
 <script>
-    import { niceAddress } from "@/lib/utils";
+    import { niceAddress } from "@/lib/utils.js";
     import { Link } from "@inertiajs/svelte";
     import { getDrawerStore } from "@skeletonlabs/skeleton";
     import { tradeDetails } from "@/stores/tradeDetailStore.js";
+    import MintTradeButton from "./wallet/MintTradeButton.svelte";
+    import { Confetti } from "svelte-confetti";
 
     export let trade;
     export let wallet;
@@ -16,7 +18,7 @@
             id: "trade-details",
             width: "w-3/4",
             props: { trade },
-            position: "left"
+            position: "left",
         };
         drawerStore.open(setting);
     };
@@ -42,6 +44,7 @@
                         id="show_data"
                         on:click={handleClickViewData}>View Metadata</button
                     >
+                    <MintTradeButton {trade} {wallet} />
                 </div>
                 <hr class="opacity-50" />
                 <footer class="p-4 flex justify-start items-center space-x-4">

@@ -3,7 +3,7 @@
         {
             "name": "MKP",
             "address": "0xe3312476A33E7C51a9dbbf9F843286c428521F74",
-            "chainId": 1,
+            "chainId": 84532,
             "abi": [
                 {
                     "type": "function",

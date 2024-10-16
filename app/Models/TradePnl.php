@@ -31,6 +31,11 @@ class TradePnl extends Model implements HasMedia
         'trade_pnl_trade_id',
         'trade_pnl_symbol',
         'wallet_id',
+        'trade_pnl_is_minted',
+        'trade_pnl_minted_at',
+        'trade_pnl_minted_by',
+        'trade_pnl_minted_txid',
+        'trade_pnl_minted_txurl',
     ];
 
     /**
@@ -44,6 +49,7 @@ class TradePnl extends Model implements HasMedia
         'trade_pnl_percentage' => 'decimal:2',
         'trade_pnl_date' => 'date',
         'wallet_id' => 'integer',
+        'trade_pnl_is_minted' => 'boolean',
     ];
 
     /**
@@ -65,10 +71,11 @@ class TradePnl extends Model implements HasMedia
         ]);
         $this->human_date = Carbon::parse($this->trade_pnl_date)->format('d/m/Y');
         $this->image_url = $this->getImageUrl();
+        $this->api_proof_metadata_url = route('api.proof.futures_metadata', $this->ulid);
         return $this;
     }
 
-    public function unserializedProofData():self
+    public function unserializedProofData(): self
     {
         $this->unserialized_proof = unserialize($this->trade_proof_data);
         return $this;

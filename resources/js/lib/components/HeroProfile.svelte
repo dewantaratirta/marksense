@@ -4,10 +4,20 @@
     import { Link } from "@inertiajs/svelte";
     import Logo from "./Logo.svelte";
     import { onMount } from "svelte";
+    import { clipboard } from "@skeletonlabs/skeleton";
+    import { getToastStore } from "@skeletonlabs/skeleton";
 
     export let wallet;
     export let enable_edit = true;
     let initialize = false;
+
+    const toastStore = getToastStore();
+
+    const handleSuccessCopy = () => {
+        toastStore.trigger({
+            message: "Copied to clipboard",
+        });
+    };
 
     onMount(() => {
         initialize = true;
@@ -53,9 +63,15 @@
                                     >
                                 </div>
                                 <div class="flex-auto text-gray-500 my-1">
-                                    <span class="mr-3 hidden sm:block"
-                                        >{wallet?.wallet_address}</span
-                                    >
+                                    <button
+                                        class="mr-3 hidden sm:block"
+                                        use:clipboard={wallet?.wallet_address}
+                                        on:click={handleSuccessCopy}
+                                        >{wallet?.wallet_address}
+                                        <i
+                                            class="fa-regular fa-clipboard cursor-pointer"
+                                        />
+                                    </button>
                                     <span class="mr-3 sm:hidden block"
                                         >{niceAddress(
                                             wallet?.wallet_address,

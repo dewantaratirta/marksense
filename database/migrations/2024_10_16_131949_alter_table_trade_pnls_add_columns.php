@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('trade_pnls', function (Blueprint $table) {
-            $table->boolean('trade_pnl_is_minted')->nullable()->default(null);
+            $table->boolean('trade_pnl_is_minted')->nullable()->default(false);
             $table->timestamp('trade_pnl_minted_at')->nullable()->default(null);
             $table->string('trade_pnl_minted_by')->nullable()->default(null);
             $table->string('trade_pnl_minted_txid')->nullable()->default(null);

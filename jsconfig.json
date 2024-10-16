@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node16",
     "target": "ESNext",
     "module": "ESNext",
     /**
@@ -57,6 +57,7 @@
   "include": [
     "resources/**/*.d.ts",
     "resources/**/*.js",
+    "resources/**/*.ts",
     "resources/**/*.svelte",
     "resources/js/stores/wagmi.tss",
     "resources/js/stores/wagmi.tsts"

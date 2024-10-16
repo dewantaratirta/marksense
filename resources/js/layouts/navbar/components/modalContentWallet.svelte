@@ -7,15 +7,23 @@
     import BtnProfile from "./btnProfile.svelte";
     import Basenames from '@/lib/components/ButtonProfile/Basenames';
     import ButtonEditProfile from "@/lib/components/ButtonProfile/ButtonEditProfile.svelte";
+    import { getToastStore } from "@skeletonlabs/skeleton";
 
     const { chains } = wagmiConfig;
 
     const modalStore = getModalStore();
+    const toastStore = getToastStore();
     let walletInfo = {};
 
     const handleDisconnect = async () => {
         await disconnect(wagmiConfig);
         modalStore.close();
+    };
+
+    const handleSuccessCopy = () => {
+        toastStore.trigger({
+            message: "Copied to clipboard",
+        });
     };
 
     // const handleChangeChain = async () => {
@@ -50,12 +58,15 @@
                             class="w-4 h-4 me-2 rounded-full"
                         />
                     {/if}
-                    <span
+                    <button
                         class="font-medium hover:text-primary-400 rounded-md"
                         id="btn-copy-popup"
+                        use:clipboard={$account?.address}
+                        on:click={handleSuccessCopy}
                     >
                         {niceAddress($account?.address ?? "")}
-                    </span>
+                        <i class="fa-regular fa-clipboard" id="icon-copy"></i>
+                    </button>
                 </div>
 
                 <!-- chain -->
