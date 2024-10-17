@@ -12,7 +12,6 @@
     export let className = "btn bg-success-300 text-success-800 w-full";
     let success = false;
     
-    console.log(trade)
 
     const handleMint = async () => {
         try {
