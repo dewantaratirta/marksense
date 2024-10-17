@@ -33,7 +33,10 @@
             hash: trade.trade_pnl_minted_txid,
         }).then((res) => {
             console.log(res);
-            nft_id_hash = res?.logs[2]?.data;
+            let count_logs = res?.logs.length;
+            let find_log = count_logs - 2;
+
+            nft_id_hash = res?.logs[find_log]?.data;
             if (nft_id_hash) {
                 try {
                     nft_id = BigInt(nft_id_hash).toString();
@@ -57,7 +60,9 @@
                         alt="Post"
                     />
                     {#if trade.trade_pnl_is_minted && trade.trade_pnl_minted_txid}
-                        <span class="badge variant-filled-success minted-badge">Minted</span>
+                        <span class="badge variant-filled-success minted-badge"
+                            >Minted</span
+                        >
                     {/if}
                 </div>
                 <div class="p-4 space-y-4">
@@ -113,10 +118,8 @@
     </div>
 </div>
 
-
-
 <style>
-    .minted-badge{
+    .minted-badge {
         position: absolute;
         top: 20px;
         right: 20px;
