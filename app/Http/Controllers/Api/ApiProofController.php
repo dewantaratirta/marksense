@@ -126,4 +126,26 @@ class ApiProofController extends Controller
 
         return response()->json($results);
     }
+
+
+    function futures_mint(Request $request, TradePnl $trade_pnls)
+    {
+        $validate = $this->validate($request, [
+            'txid' => 'required',
+            'address' => 'regex:/^' . preg_quote($trade_pnls->wallet->wallet_address, '/') . '$/'
+        ]);
+
+        if($trade_pnls->trade_pnl_is_minted) {
+            return $this->error('Proof already minted', 400);
+        }
+
+        $trade_pnls->trade_pnl_is_minted = true;
+        $trade_pnls->trade_pnl_minted_at = Carbon::now();
+        $trade_pnls->trade_pnl_minted_by = $request->input('address');
+        $trade_pnls->trade_pnl_minted_txid = $request->input('txid');
+        $trade_pnls->trade_pnl_minted_txurl = 'https://sepolia.basescan.org/tx/'.$request->input('txid');
+        $trade_pnls->save();
+
+        return $this->success('Proof minted successfully');
+    }
 }

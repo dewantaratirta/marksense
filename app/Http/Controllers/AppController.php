@@ -128,6 +128,7 @@ class AppController extends Controller
         return Inertia::render('TradePage', [
             'trade' => $trade->unserializedProofData()->getPublicData(),
             'wallet' => $wallet,
+            'token' => csrf_token(),
         ]);
     }
 

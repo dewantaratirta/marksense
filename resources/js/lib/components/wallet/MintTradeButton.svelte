@@ -3,6 +3,7 @@
     import address from "@/lib/abi/address.json";
     import { getToastStore } from "@skeletonlabs/skeleton";
     import { writeContract } from "@wagmi/core";
+    import { page } from "@inertiajs/svelte";
 
     const toastStore = getToastStore();
 
@@ -10,6 +11,8 @@
     export let wallet;
     export let className = "btn bg-success-300 text-success-800 w-full";
     let success = false;
+    
+    console.log(trade)
 
     const handleMint = async () => {
         try {
@@ -40,21 +43,50 @@
                 args: args,
             });
 
-            if (_hash !== "null") {
+            if (_hash == "null") {
                 let hash = "Hash: " + _hash;
 
                 let ToastSettings = {
-                    message: "Congratulations! NFT minted successfully",
+                    message: "Something went wrong. Please try again later",
+                    background: "variant-filled-error",
                 };
                 success = true;
                 toastStore.trigger(ToastSettings);
-            } else {
+                return;
+            }
+
+            // success
+            let post = await fetch("/api/proof/futures/mint/" + trade?.ulid, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({
+                    txid: _hash,
+                    address: $account.address,
+                    _token: $page.props.token,
+                }),
+            }).then((response) => response.json());
+
+            // error post
+            if (post.status !== "success") {
                 let ToastSettings = {
-                    message: "The signature was rejected",
+                    message: post.message,
                     background: "variant-filled-error",
                 };
                 toastStore.trigger(ToastSettings);
+                return;
             }
+
+            let ToastSettings = {
+                message: "Success! NFT minted successfully",
+            };
+            toastStore.trigger(ToastSettings);
+
+            setTimeout(() => {
+                window.location.reload();
+            }, 5000);
         } catch (error) {
             let ToastSettings = {
                 message: error.message,
@@ -63,7 +95,6 @@
             toastStore.trigger(ToastSettings);
         }
     };
-    console.log($account);
 </script>
 
 {#if $account?.address == trade.wallet.wallet_address && !trade?.trade_pnl_is_minted}

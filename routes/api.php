@@ -64,4 +64,8 @@ Route::group(['prefix' => 'proof', 'as' => 'api.proof.'], function () {
     Route::get('futures/metadata/{trade_pnls}', [App\Http\Controllers\Api\ApiProofController::class, 'futures_metadata'])
         ->middleware(['web'])
         ->name('futures_metadata');
+
+    Route::post('futures/mint/{trade_pnls}', [App\Http\Controllers\Api\ApiProofController::class, 'futures_mint'])
+        ->middleware(['web'])
+        ->name('futures_mint');
 });
