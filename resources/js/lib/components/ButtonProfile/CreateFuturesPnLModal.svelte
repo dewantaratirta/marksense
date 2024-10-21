@@ -8,8 +8,7 @@
     import { canvasFutureStore } from "@/stores/canvasFutureStore";
     import { page } from "@inertiajs/svelte";
 
-
-    console.log('$page',$page);
+    console.log("$page", $page);
 
     export let wallet;
     let mode = "";
@@ -17,6 +16,9 @@
 
     const modalStore = getModalStore();
     let back = false;
+    let info = true;
+    let infoText =
+        "Make sure you have an active trade within the last 7 days, and your account is connected to Binance.";
     let pairList = [];
     let tradeList = [];
     let choosenTrade = "";
@@ -36,22 +38,26 @@
         switch (mode) {
             case "choose_pair":
                 back = false;
+                info = true;
                 title = "Choose Pair";
                 await getFuturePairList();
                 break;
 
             case "choose_trade":
                 back = "choose_pair";
+                info = false;
                 title = "Choose Trade";
                 await getTrades();
                 break;
             case "create_proof":
                 back = "choose_trade";
+                info = false;
                 title = "Create Proof";
                 await getSingleTrade();
                 break;
             case "generate_proof":
                 back = "create_proof";
+                info = false;
                 title = "Generate Proof";
                 await generateProof();
                 break;
@@ -76,7 +82,13 @@
             ).then((res) => res.json());
             loading = false;
 
-            if (result.data.length == 0) {
+            if (!result?.data) {
+                console.log("no future pair available");
+                await toastError({ message: "No future pair available" });
+                return;
+            }
+
+            if (!result?.data || result?.data?.length == 0) {
                 handleCloseModal();
                 await toastError({ message: "No future pair available" });
                 return;
@@ -156,16 +168,16 @@
     };
 
     const generateProof = async () => {
-
         generateProofFutureLoading = true;
         try {
             //blob_url to file
             const response = await fetch(canvasFutureUrl);
             const blob = await response.blob();
-            const file = new File([blob], "canvasFuture.png", { type: "image/png" });
-            
+            const file = new File([blob], "canvasFuture.png", {
+                type: "image/png",
+            });
 
-            console.log(`tradeData`, tradeData)
+            console.log(`tradeData`, tradeData);
             const formData = new FormData();
             formData.append("_token", $page?.props?.token);
             formData.append("file", file);
@@ -187,9 +199,9 @@
                         Accept: "application/json",
                     },
                     body: formData,
-                }
+                },
             ).then((res) => res.json());
-            if(res.status == 'error'){
+            if (res.status == "error") {
                 throw new Error(res.message);
             }
             generateProofFutureResult = true;
@@ -231,6 +243,18 @@
             </button>
         </div>
     </div>
+
+    {#if info}
+        <div class="flex justify-center items-center mb-4 max-w-md">
+            <aside class="alert variant-soft-error">
+                <!-- Message -->
+                <div class="alert-message">
+                    <p class="text-sm text-center">{infoText}</p>
+                </div>
+                <!-- Actions -->
+            </aside>
+        </div>
+    {/if}
 
     {#if loading}
         <div class="flex justify-center items-center mb-4">
@@ -307,7 +331,11 @@
                         <GenerateImagePnLFutures trade={tradeData} />
                     </div>
                     {#if canvasFutureUrl}
-                        <img src={canvasFutureUrl} alt="canvas" class="w-[70%] max-w-[640px]"/>
+                        <img
+                            src={canvasFutureUrl}
+                            alt="canvas"
+                            class="w-[70%] max-w-[640px]"
+                        />
 
                         <button
                             class="btn bg-primary-500 text-white rounded-full hover:bg-primary-400 mt-6"
@@ -322,29 +350,27 @@
                     {/if}
                 </div>
             </div>
-        {:else if mode == 'generate_proof'}
+        {:else if mode == "generate_proof"}
             {#if generateProofFutureLoading}
                 <div class="flex justify-center items-center my-4">
                     <p>Generating Proof...</p>
                 </div>
+            {:else if generateProofFutureResult}
+                <div class="flex justify-center items-center my-4">
+                    <p>Proof Generated</p>
+                </div>
             {:else}
-                {#if generateProofFutureResult}
-                    <div class="flex justify-center items-center my-4">
-                        <p>Proof Generated</p>
-                    </div>
-                {:else}
-                    <div class="flex flex-col justify-center items-center my-4">
-                        <p class="mb-2">Failed to generate proof</p>
+                <div class="flex flex-col justify-center items-center my-4">
+                    <p class="mb-2">Failed to generate proof</p>
 
-                        <!-- button retry -->
-                        <button
-                            class="btn bg-primary-500 text-white rounded-full hover:bg-primary-400"
-                            on:click={() => {
-                                switchMode("generate_proof");
-                            }}
-                        >Retry</button>
-                    </div>
-                {/if}
+                    <!-- button retry -->
+                    <button
+                        class="btn bg-primary-500 text-white rounded-full hover:bg-primary-400"
+                        on:click={() => {
+                            switchMode("generate_proof");
+                        }}>Retry</button
+                    >
+                </div>
             {/if}
         {/if}
     {/if}
