@@ -104,7 +104,7 @@
                                     type="text"
                                     name="key"
                                     bind:value={key}
-                                    class={"form-input px-4 py-3 rounded-full " +
+                                    class={"form-input border px-4 py-3 rounded-full " +
                                         (errors?.key
                                             ? "border-2 border-red-500"
                                             : "")}
@@ -123,7 +123,7 @@
                                     type="text"
                                     name="secret"
                                     bind:value={secret}
-                                    class={"form-input px-4 py-3 rounded-full  " +
+                                    class={"form-input border px-4 py-3 rounded-full  " +
                                         (errors?.secret
                                             ? "border-2 border-red-500"
                                             : "")}

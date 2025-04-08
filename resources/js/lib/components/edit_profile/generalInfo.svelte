@@ -54,7 +54,7 @@
                             type="text"
                             name="display_name"
                             bind:value={name}
-                            class={"form-input px-4 py-3 rounded-full " +
+                            class={"form-input px-4 border py-3 rounded-full " +
                                 (errors?.name ? "border-2 border-red-500" : "")}
                             required="required"
                         />
@@ -71,7 +71,7 @@
                             type="text"
                             name="username"
                             bind:value={username}
-                            class={"form-input px-4 py-3 rounded-full  " +
+                            class={"form-input px-4 border py-3 rounded-full  " +
                                 (errors?.username
                                     ? "border-2 border-red-500"
                                     : "")}

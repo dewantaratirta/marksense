@@ -1,18 +1,20 @@
 import { createWeb3Modal } from '@web3modal/wagmi';
 import { createConfig, http } from '@wagmi/core';
-import { walletConnect, injected, coinbaseWallet } from "@wagmi/connectors";
+import { walletConnect, injected, metaMask } from "@wagmi/connectors";
 
 import { getAccount, getChainId, reconnect as rc, watchAccount, watchChainId } from '@wagmi/core';
 import { readable, writable } from 'svelte/store';
 
 import base_sepolia from './base_sepolia_chain.js';
+import eduChainTestnet from './educhain.js';
 
 import {
 	base,
 } from 'viem/chains';
 import { CUSTOM_WALLET } from './constants.js';
 
-export const projectId = import.meta.env.VITE_PUBLIC_WALLETCONNECT_ID;
+export const projectId = import.meta?.env?.VITE_PUBLIC_WALLETCONNECT_ID ?? "3e97282400323fb72cc0545de271fff9";
+console.log(import.meta);
 
 let storedCustomWallet;
 if (typeof window !== 'undefined') {
@@ -29,8 +31,9 @@ const metadata = {
 };
 
 export const chains = [
-	base_sepolia,
-	base
+	// base_sepolia,
+	// base,
+	eduChainTestnet
 ];
 
 export const web3modal = writable(undefined, ()=>{});
@@ -42,19 +45,17 @@ export const wagmiConfig = createConfig({
 	enableCoinbase: false,
 	enableInjected: true,
 	connectors: [
-		coinbaseWallet({
+		metaMask({
 			appName: "Marksense",
-			preference: "smartWalletOnly",
-			appLogoUrl: "https://marksense.tech/storage/icon.svg",
-			version: "4",
 		}),
 		// walletConnect({
 		// 	projectId: projectId,
 		// }),
 	],
 	transports:{
-		[base_sepolia.id]: http('https://sepolia.base.org'),
-		[base.id]: http('https://base.llamarpc.com')
+		// [base_sepolia.id]: http('https://sepolia.base.org'),
+		// [base.id]: http('https://base.llamarpc.com'),
+		[eduChainTestnet.id]: http('https://rpc.open-campus-codex.gelato.digital/'),
 	}
 });
 
