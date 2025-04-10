@@ -16,7 +16,7 @@
     ]
   },
   "node_modules/@web3modal/scaffold-ui/dist/esm/exports/w3m-modal.js": {
-    "file": "assets/w3m-modal-Bv5AgY1i.js",
+    "file": "assets/w3m-modal-DO2it_gv.js",
     "name": "w3m-modal",
     "src": "node_modules/@web3modal/scaffold-ui/dist/esm/exports/w3m-modal.js",
     "isDynamicEntry": true,
@@ -31,7 +31,7 @@
     ]
   },
   "node_modules/@web3modal/siwe/dist/esm/exports/index.js": {
-    "file": "assets/index-CSYGTa8m.js",
+    "file": "assets/index-Cffc72Fg.js",
     "name": "index",
     "src": "node_modules/@web3modal/siwe/dist/esm/exports/index.js",
     "isDynamicEntry": true,
@@ -42,7 +42,7 @@
     ]
   },
   "node_modules/@web3modal/ui/dist/esm/index.js": {
-    "file": "assets/index-C5iG_UON.js",
+    "file": "assets/index-BNmL1d4J.js",
     "name": "index",
     "src": "node_modules/@web3modal/ui/dist/esm/index.js",
     "isDynamicEntry": true,
@@ -73,7 +73,7 @@
     "src": "node_modules/remixicon/fonts/remixicon.woff2"
   },
   "node_modules/viem/_esm/utils/ccip.js": {
-    "file": "assets/ccip-B5WPgGwY.js",
+    "file": "assets/ccip-CJxZqa4c.js",
     "name": "ccip",
     "src": "node_modules/viem/_esm/utils/ccip.js",
     "isDynamicEntry": true,
@@ -220,7 +220,7 @@
     "isEntry": true
   },
   "resources/css/frontpage.pcss": {
-    "file": "assets/frontpage-D183xOgQ.css",
+    "file": "assets/frontpage-vCs26JFq.css",
     "src": "resources/css/frontpage.pcss",
     "isEntry": true
   },
@@ -238,7 +238,7 @@
     ]
   },
   "resources/js/frontpage.js": {
-    "file": "assets/frontpage-DugTWUKa.js",
+    "file": "assets/frontpage-Cfs1gl3h.js",
     "name": "frontpage",
     "src": "resources/js/frontpage.js",
     "isEntry": true,
@@ -263,8 +263,7 @@
     ],
     "assets": [
       "assets/binance_icon-Cl_VwBtL.png",
-      "assets/base-aEQo8XN_.png",
-      "assets/smartwallet-MtUbe7sJ.svg",
+      "assets/educhain-DxzERmav.svg",
       "assets/pnl_bg-CPnaHPgo.png"
     ]
   },
@@ -275,6 +274,10 @@
   "resources/js/lib/components/icon/binance_icon.png": {
     "file": "assets/binance_icon-Cl_VwBtL.png",
     "src": "resources/js/lib/components/icon/binance_icon.png"
+  },
+  "resources/js/lib/components/icon/educhain.svg": {
+    "file": "assets/educhain-DxzERmav.svg",
+    "src": "resources/js/lib/components/icon/educhain.svg"
   },
   "resources/js/lib/components/svg/smartwallet.svg": {
     "file": "assets/smartwallet-MtUbe7sJ.svg",

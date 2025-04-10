@@ -9,6 +9,7 @@
     import { Link } from "@inertiajs/svelte";
     import BinanceIcon from "@/lib/components/icon/binance_icon.png";
     import BaseIcon from "@/lib/components/icon/base.png";
+    import EduChianIcon from "@/lib/components/icon/educhain.svg";
     import CoinbaseIcon from "@/lib/components/svg/smartwallet.svg";
 </script>
 
@@ -97,30 +98,15 @@
                             whitespace-nowrap text-4xl group hover:border-[#ff770094] transition-all duration-300"
                         >
                             <img
-                                src={BaseIcon}
+                                src={EduChianIcon}
                                 alt="svelte_logo"
                                 class="h-10 w-auto mt-1.5 m-2"
                             />
-                            <div
-                                class="flex flex-row justify-center align-middle items-center"
-                            >
-                                <img
-                                    src={CoinbaseIcon}
-                                    alt="svelte_logo"
-                                    class="h-10 w-auto mt-1.5 m-2"
-                                />
-                                <p class="ps-2">Smart Wallet</p>
-                            </div>
                             <img
                                 src={BinanceIcon}
                                 alt="svelte_logo"
                                 class="h-12 w-auto mt-1.5 m-2"
                             />
-                            <div
-                                class="flex flex-row justify-center align-middle items-center m-2"
-                            >
-                                <p class="text-primary-500">zkFetch</p>
-                            </div>
                         </div>
                     </div>
                 </div>
